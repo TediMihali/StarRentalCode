@@ -1,0 +1,55 @@
+<!-- templates/sign_up.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-6 border p-4">
+        <h2 class="mb-4">Sign Up</h2>
+        <form method="post" action="{% url 'signup' %}">
+          {% csrf_token %}
+          
+          <!-- Username Field -->
+          <div class="mb-3">
+            <label for="{{ form.username.id_for_label }}">Username:</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+              <div class="text-danger">{{ form.username.errors|join:", " }}</div>
+            {% endif %}
+          </div>
+          
+          <!-- ID Field -->
+          <div class="mb-3">
+            <label for="{{ form.id_for_label }}">ID:</label>
+            {{ form.id }}
+            {% if form.id.errors %}
+              <div class="text-danger">{{ form.id.errors|join:", " }}</div>
+            {% endif %}
+          </div>
+
+          <!-- Password1 Field -->
+          <div class="mb-3">
+            <label for="{{ form.password1.id_for_label }}">Password:</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+              <div class="text-danger">{{ form.password1.errors|join:", " }}</div>
+            {% endif %}
+          </div>
+
+          <!-- Password2 Field -->
+          <div class="mb-3">
+            <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+              <div class="text-danger">{{ form.password2.errors|join:", " }}</div>
+            {% endif %}
+          </div>
+          
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
