@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if cars %}
+    <h2>Search Results:</h2>
+    <ul>
+        {% for car in cars %}
+            <li>{{ car.brand }} - {{ car.model }} - {{ car.location }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No cars found.</p>
+{% endif %}
+{% endblock %}

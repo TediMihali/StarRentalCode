@@ -1,1 +1,5 @@
 /venv/
+.gitignore
+.idea
+venv
+car_rental_project/.idea
