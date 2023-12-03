@@ -42,6 +42,7 @@ class Car(models.Model):
     daily_rate = models.IntegerField(default=30, null=False)
     images = models.ManyToManyField("CarImage", related_name="car_images", blank=False)
     location = models.CharField(default="StarRental", max_length=50)
+    available = models.BooleanField(default=True)
 
 
 class CarImage(models.Model):
