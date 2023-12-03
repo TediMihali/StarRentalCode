@@ -40,18 +40,13 @@ class Car(models.Model):
     production_year = models.PositiveIntegerField()
     color = models.CharField(max_length=30, null=False)
     daily_rate = models.IntegerField(default=30, null=False)
-    
-    def __str__(self) -> str:
-        return f"{self.brand}, {self.model}" 
+    images = models.ManyToManyField("CarImage", related_name="car_images", blank=False)
+    location = models.CharField(default="StarRental", max_length=50)
 
 
 class CarImage(models.Model):
     car = models.ForeignKey(Car, related_name="car_images", on_delete=models.DO_NOTHING)
     image = models.ImageField(upload_to="cars/images/")
-
-    def __str__(self):
-        return f"{self.car.brand}, {self.car.model}. {self.id}"
-
 
 class Customer(models.Model):
     name = models.CharField(max_length=30, null=False)
@@ -59,9 +54,6 @@ class Customer(models.Model):
     phone_number =models.CharField(max_length=12, help_text="Please enter your phone number +2556912345678")
     ID_Number = models.CharField(max_length=20, unique=True)
 
-    def __str__(self) -> str:
-        return f"{self.name}, {self.ID_Number}"
-    
 
 class Booking(models.Model):
     car = models.ForeignKey(Car, on_delete=models.DO_NOTHING)
@@ -73,6 +65,3 @@ class Booking(models.Model):
     
     def total_payment(self):
         return self.car.daily_rate * self.number_of_days
-    
-    def __str__(self):
-        return f"{self.id}, {self.car},  {self.start_date} -> {self.end_date}"
