@@ -11,4 +11,7 @@ class SignUpView(FormView):
     form_class = SignUpForm
     success_url =  reverse_lazy("home")
 
-
+class SignInView(FormView):
+    template_name = "sign_in.html"
+    form_class = SignInForm
+    success_url = reverse_lazy("home") 
