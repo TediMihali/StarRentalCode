@@ -1,16 +1,5 @@
 from django.db import models
-from django.core.exceptions import ValidationError
-from django.utils import timezone
 
-def future_date_validator(value):
-    if value <= timezone.now().date():
-        raise ValidationError("The date must be in the future")
-    
-def end_date_validator(start_date, end_date):
-    if end_date < start_date:
-        raise ValidationError("The end date must be after the start date")
-    
-    
 # Create your models here.
 class Car(models.Model):
     Gearbox1 = "Automatic"
@@ -40,9 +29,19 @@ class Car(models.Model):
     production_year = models.PositiveIntegerField()
     color = models.CharField(max_length=30, null=False)
     daily_rate = models.IntegerField(default=30, null=False)
+    discounted_daily_rate = models.IntegerField(default=0, null=True, blank=True)
     images = models.ManyToManyField("CarImage", related_name="car_images", blank=False)
     location = models.CharField(default="StarRental", max_length=50)
     available = models.BooleanField(default=True)
+
+    def save(self, *args, **kwargs):
+        self.discounted_daily_rate = int(0.8 * self.daily_rate)
+        super().save(*args, **kwargs)
+
+    
+    def __str__(self):
+        return f"{self.brand} - {self.model}"
+    
 
 
 class CarImage(models.Model):
@@ -58,11 +57,16 @@ class Customer(models.Model):
 
 class Booking(models.Model):
     car = models.ForeignKey(Car, on_delete=models.DO_NOTHING)
-    start_date = models.DateField(validators=[future_date_validator])
-    end_date = models.DateField(validators=[end_date_validator])
+    start_date = models.DateField()
+    end_date = models.DateField()
     
     def number_of_days(self):
         return (self.end_date - self.start_date).days
     
     def total_payment(self):
         return self.car.daily_rate * self.number_of_days
+
+    def save(self, *args, **kwargs):
+        # Save the associated Car instance first to ensure discounted_daily_rate is calculated
+        self.car.save()
+        super().save(*args, **kwargs)

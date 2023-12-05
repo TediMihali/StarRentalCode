@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 <style>
@@ -7,34 +8,42 @@
         height: auto;
         margin: 15px;
     }
-    .container_car{
-        width:60%;
+    .container_car {
+        width: 60%;
+    }
+    .rent-button {
+        display: inline-block;
+        margin-top: 10px;
     }
 </style>
-    <div class="container mt-4">
-    <div class=" row justify-content-md-center">
-    {% for car in car_list %}
-        <div class="col-md-12 mb-4 container_car justify-content-center" style="padding:20px">
-            <div class="border border-secondary rounded">
-                <div class="row">
-                    <div class="col-md-5 m-3">
-                        <h3>{{ car.brand }} - {{ car.model }}</h3>
-                        <p>Production Year: {{ car.production_year }}</p>
-                        <p>Color: {{ car.color }}</p>
-                        <p>Daily Rate: {{ car.daily_rate }} $</p>
-                        <p>Location: {{car.location}}</p>
-                        <button class="btn btn-dark">Book</button>
-                        <!-- Add more information as needed -->
-                    </div>
-                    <div class="col-md-5 mt-3 mr-5 mb-3">
-                        {% for image in car.car_images.all|slice:":1" %}
-                            <img src="{{ image.image.url }}" alt="{{ car.brand }} - {{ car.model }} Image" class="rounded img-fluid car-image">
-                        {% endfor %}
+
+<div class="container mt-4">
+    <div class="row justify-content-md-center">
+        {% for car in car_list %}
+            <div class="col-md-12 mb-4 container_car justify-content-center" style="padding:20px">
+                <div class="border border-secondary rounded">
+                    <div class="row">
+                        <div class="col-md-5 m-3">
+                            <h3>{{ car.brand }} - {{ car.model }}</h3>
+                            <p>Production Year: {{ car.production_year }}</p>
+                            <p>Color: {{ car.color }}</p>
+                            <p>Daily Rate: {% if user.is_authenticated %}{{car.discounted_daily_rate}} {% else %}{{car.daily_rate}}{% endif %} $</p>
+                            <p>Location: {{ car.location }}</p>
+                            <a href="{% url 'car_rent' car_id=car.id %}" class="btn btn-dark rent-button" data-car-id="{{ car.id }}">Rent</a>
+                            <!-- Add more information as needed -->
+                        </div>
+                        <div class="col-md-5 mt-3 mr-5 mb-3">
+                            {% for image in car.car_images.all|slice:":1" %}
+                                <img src="{{ image.image.url }}" alt="{{ car.brand }} - {{ car.model }} Image" class="rounded img-fluid car-image">
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
     </div>
 </div>
+
+<script src="{% static "js/rent_button.js" %}"></script>
+
 {% endblock %}

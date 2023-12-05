@@ -28,8 +28,8 @@ class Migration(migrations.Migration):
             name='Booking',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('start_date', models.DateField(validators=[rental.models.future_date_validator])),
-                ('end_date', models.DateField(validators=[rental.models.end_date_validator])),
+                ('start_date', models.DateField(validators=[])),
+                ('end_date', models.DateField(validators=[])),
                 ('car', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='rental.car')),
             ],
         ),

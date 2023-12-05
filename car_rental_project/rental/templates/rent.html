@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-9">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Rent this car</h2>
+                    <form method="post" action="{% url 'car_rent' car.id %}">
+                        {% csrf_token %}
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="{{ form.start_date.id_for_label }}" class="form-label">Start Date:</label>
+                                <input type="date" name="{{form.end_date.name}}" id="{{form.end_date.id_for_label}}" value="{{form.end_date.value|date:"Y-m-d"}}" class="form-control"> 
+                                {% if form.start_date.errors %}
+                                    <div class="text-danger">{{ form.start_date.errors|join:", " }}</div>
+                                {% endif %}
+                                <br>
+                                <label for="{{ form.end_date.id_for_label }}" class="form-label">End Date:</label>
+                                <input type="date" name="{{ form.end_date.name }}" id="{{ form.end_date.id_for_label }}" value="{{ form.end_date.value|date:"Y-m-d" }}" class="form-control">
+                                {% if form.end_date.errors %}
+                                    <div class="text-danger">{{ form.end_date.errors|join:", " }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6">
+                                <div id="carouselExample" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        {% for image in car.car_images.all %}
+                                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                                <img src="{{ image.image.url }}" alt="{{ car.brand }} - {{ car.model }} Image" class="d-block w-100 car-image">
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Your form content goes here -->
+                                <button type="submit" class="btn btn-primary">Rent</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
