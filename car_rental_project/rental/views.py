@@ -4,6 +4,10 @@ from django.shortcuts import render
 from django.views.generic.edit import FormView
 from .forms import CarSearchForm
 from .models import Car, CarImage
+
+
+
+
 class Home(TemplateView):
     template_name = "home.html"
     extra_context = {"cars": Car.objects.all(), "images": CarImage.objects.all()}

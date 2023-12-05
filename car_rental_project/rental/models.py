@@ -66,3 +66,5 @@ class Booking(models.Model):
     
     def total_payment(self):
         return self.car.daily_rate * self.number_of_days
+
+

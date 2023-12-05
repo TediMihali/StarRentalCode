@@ -18,3 +18,9 @@ class CarSearchForm(forms.Form):
     location = forms.CharField(max_length=50)
     start_date = forms.DateField(validators=[future_date_validator])
     end_date = forms.DateField(validators=[end_date_validator])
+
+# rental/forms.py
+
+
+
+
