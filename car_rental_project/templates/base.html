@@ -38,6 +38,9 @@
             <li class="nav-item">
                 <button class="btn btn-danger" id="logout_button">Logout</button>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "bookings" %}">Your bookings</a>
+            </li>
             {% else %}
             <li class="nav-item">
                 <a class="nav-link" href={% url "signin"%}>Sign In</a>
@@ -46,6 +49,7 @@
                 <a class="nav-link" href={% url "signup" %}>Sign Up</a>
             </li>
             {% endif %}
+
             <li class="nav-item ml-4">
                 <a class="nav-link" href={% url "admin:index" %}>Admin</a>
             </li>

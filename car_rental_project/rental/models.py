@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 
 # Create your models here.
 class Car(models.Model):
@@ -41,12 +44,13 @@ class Car(models.Model):
     
     def __str__(self):
         return f"{self.brand} - {self.model}"
-    
+
 
 
 class CarImage(models.Model):
     car = models.ForeignKey(Car, related_name="car_images", on_delete=models.DO_NOTHING)
     image = models.ImageField(upload_to="cars/images/")
+
 
 class Customer(models.Model):
     name = models.CharField(max_length=30, null=False)
@@ -57,6 +61,7 @@ class Customer(models.Model):
 
 class Booking(models.Model):
     car = models.ForeignKey(Car, on_delete=models.DO_NOTHING)
+    id_number = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     start_date = models.DateField()
     end_date = models.DateField()
     

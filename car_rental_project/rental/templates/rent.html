@@ -1,25 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-9">
+<div class="container  mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title mb-4">Rent this car</h2>
-                    <form method="post" action="{% url 'car_rent' car.id %}">
+                    <form method="post" action="{% if car.id %}{% url 'car_rent' car.id %}{% endif %}">
                         {% csrf_token %}
-
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="{{ form.start_date.id_for_label }}" class="form-label">Start Date:</label>
-                                <input type="date" name="{{form.end_date.name}}" id="{{form.end_date.id_for_label}}" value="{{form.end_date.value|date:"Y-m-d"}}" class="form-control"> 
+                                {{form.start_date}}
                                 {% if form.start_date.errors %}
                                     <div class="text-danger">{{ form.start_date.errors|join:", " }}</div>
                                 {% endif %}
                                 <br>
                                 <label for="{{ form.end_date.id_for_label }}" class="form-label">End Date:</label>
-                                <input type="date" name="{{ form.end_date.name }}" id="{{ form.end_date.id_for_label }}" value="{{ form.end_date.value|date:"Y-m-d" }}" class="form-control">
+                                {{form.end_date}}
                                 {% if form.end_date.errors %}
                                     <div class="text-danger">{{ form.end_date.errors|join:", " }}</div>
                                 {% endif %}
@@ -49,7 +48,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <!-- Your form content goes here -->
-                                <button type="submit" class="btn btn-primary">Rent</button>
+                                <button type="submit" class="btn btn-primary" value="save">Rent</button>
                             </div>
                         </div>
                     </form>
