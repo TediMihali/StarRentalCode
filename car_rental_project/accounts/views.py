@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.shortcuts import redirect
 from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
@@ -13,9 +14,17 @@ def logout_view(request):
 class SignUpView(CreateView):
     template_name = "sign_up.html"
     form_class = SignUpForm
-    success_url =  reverse_lazy("home")
+    
+    def get_success_url(self) -> str:
+
+        return reverse("rental:home")
+    
+    
 
 class SignInView(LoginView):
     template_name = "sign_in.html"
     form_class = SignInForm
-    success_url = reverse_lazy("home")
+
+    def get_success_url(self) -> str:
+        return reverse("rental:home")
+    

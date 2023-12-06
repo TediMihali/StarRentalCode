@@ -3,34 +3,41 @@
 {% block content %}
   <div class="container mt-5">
     <h2 class="mb-4">Bookings List</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Car</th>
-          <th scope="col">Start Date</th>
-          <th scope="col">End Date</th>
-          <th scope="col">Total Payment</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for booking in bookings_list %}
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
           <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>{{ booking.car }}</td>
-            <td>{{ booking.start_date }}</td>
-            <td>{{ booking.end_date }}</td>
-            <td>{{ booking.total_payment }}</td>
-            <td>
-              <form method="post" action="#">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Cancel</button>
-              </form>
-            </td>
+            <th scope="col">#</th>
+            <th scope="col">Car</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Total Payment</th>
+            <th scope="col">Actions</th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+        </thead>
+        <hr>
+        <tbody>
+          {% for booking in bookings_list %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ booking.car }}</td>
+              <td>{{ booking.start_date }}</td>
+              <td>{{ booking.end_date }}</td>
+              <td>{{ booking.total_payment }}</td>
+              <td>
+                <form method="post" action={% url "cancel_booking" booking.id %}>
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Cancel</button>
+                </form>
+              </td>
+            </tr>
+            <hr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <hr>
+      <a href={% url "rental:auto_listing" %} class="btn btn-primary mt-5">Add Booking</a>
+    </div>
   </div>
 {% endblock %}
+

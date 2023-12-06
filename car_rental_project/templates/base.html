@@ -23,13 +23,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href={% url "home"%}>Home</a>
+                <a class="nav-link" href={% url "rental:home"%}>Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href={% url "auto_listing"%}>Auto Listing</a>
+                <a class="nav-link" href={% url "rental:auto_listing"%}>Auto Listing</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href={% url "about_us" %}>About us</a>
+                <a class="nav-link" href={% url "rental:about_us" %}>About us</a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
@@ -39,19 +39,19 @@
                 <button class="btn btn-danger" id="logout_button">Logout</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url "bookings" %}">Your bookings</a>
+                <a class="nav-link" href="{% url "rental:bookings" %}">Your bookings</a>
             </li>
             {% else %}
             <li class="nav-item">
-                <a class="nav-link" href={% url "signin"%}>Sign In</a>
+                <a class="nav-link" href={% url "accounts:signin" %}>Sign In</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href={% url "signup" %}>Sign Up</a>
+                <a class="nav-link" href={% url "accounts:signup" %}>Sign Up</a>
             </li>
             {% endif %}
 
             <li class="nav-item ml-4">
-                <a class="nav-link" href={% url "admin:index" %}>Admin</a>
+                <a class="nav-link" href="#">Admin</a>
             </li>
         </ul>
     </div>
@@ -97,7 +97,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script>
-    const logouturl = "{% url "logout" %}";
+    const logouturl = "{% url "accounts:logout" %}";
 </script>
 <script src={% static "js/logout.js" %}></script>
 </body>

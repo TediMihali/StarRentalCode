@@ -29,7 +29,7 @@
                             <p>Color: {{ car.color }}</p>
                             <p>Daily Rate: {% if user.is_authenticated %}{{car.discounted_daily_rate}} {% else %}{{car.daily_rate}}{% endif %} $</p>
                             <p>Location: {{ car.location }}</p>
-                            <a href="{% url 'car_rent' car_id=car.id %}" class="btn btn-dark rent-button" data-car-id="{{ car.id }}">Rent</a>
+                            <a href="{% url 'rental:car_rent' car_id=car.id %}" class="btn btn-dark rent-button" data-car-id="{{ car.id }}">Rent</a>
                             <!-- Add more information as needed -->
                         </div>
                         <div class="col-md-5 mt-3 mr-5 mb-3">
