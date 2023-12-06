@@ -5,11 +5,18 @@ from django.views.generic import ListView
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.edit import FormView
+<<<<<<< HEAD
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .forms import CarSearchForm, CarRentForm
 from .models import Car, CarImage, Booking, User
+=======
+from .forms import CarSearchForm
+from .models import Car, CarImage
+
+
+>>>>>>> 7baa5142b1a9a4ef426c5c4d0259608b0ed032bc
 
 
 class Home(TemplateView):

@@ -68,6 +68,7 @@ class Booking(models.Model):
 
     def number_of_days(self):
         return (self.end_date - self.start_date).days
+<<<<<<< HEAD
 
     def calculate_total_payment(self):
         return self.car.daily_rate * self.number_of_days()
@@ -77,3 +78,10 @@ class Booking(models.Model):
         self.car.save()
         self.total_payment = self.calculate_total_payment()
         super().save(*args, **kwargs)
+=======
+    
+    def total_payment(self):
+        return self.car.daily_rate * self.number_of_days
+
+
+>>>>>>> 7baa5142b1a9a4ef426c5c4d0259608b0ed032bc
