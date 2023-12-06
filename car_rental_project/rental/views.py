@@ -65,7 +65,7 @@ class CarRentView(FormView):
 
         booking.save()
 
-        return redirect('home')  # Replace 'home' with the actual URL name for the success page
+        return redirect('rental:home')  # Replace 'home' with the actual URL name for the success page
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -101,4 +101,4 @@ class CancelBookingView( View):
         booking = get_object_or_404(Booking, id=booking_id, CUSTOMER=request.user)
         # Add any additional logic for cancellation, such as updating the database
         booking.delete()
-        return redirect('bookings')  # Redirect to the bookings list page
+        return redirect('rental:bookings')  # Redirect to the bookings list page

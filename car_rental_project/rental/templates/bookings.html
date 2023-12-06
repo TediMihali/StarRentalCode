@@ -25,7 +25,7 @@
               <td>{{ booking.end_date }}</td>
               <td>{{ booking.total_payment }}</td>
               <td>
-                <form method="post" action={% url "cancel_booking" booking.id %}>
+                <form method="post" action={% url "rental:cancel_booking" booking.id %}>
                   {% csrf_token %}
                   <button type="submit" class="btn btn-danger">Cancel</button>
                 </form>
