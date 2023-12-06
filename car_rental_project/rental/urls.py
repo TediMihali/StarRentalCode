@@ -6,18 +6,10 @@ from .views import Home, AutoListingView, AboutUsView, CarRentView,  BookingsVie
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
     path("", Home.as_view(), name="home"),
-<<<<<<< HEAD
     path("cars/", AutoListingView.as_view(), name="auto_listing"),
     path("cars/rent/<int:car_id>", CarRentView.as_view(), name="car_rent"),
     path("about/", AboutUsView.as_view(), name="about_us"),
     path('bookings', BookingsView.as_view(), name="bookings"),
     path('bookings/cancel/<int:booking_id>',CancelBookingView.as_view() ,name="cancel_booking")
-    
-=======
-    path("/cars/", AutoListingView.as_view(), name="auto_listing"),
-    path("/about/", AboutUsView.as_view(), name="about_us"),
-
->>>>>>> 7baa5142b1a9a4ef426c5c4d0259608b0ed032bc
 ]
