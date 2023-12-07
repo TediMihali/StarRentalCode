@@ -5,11 +5,14 @@ from django.contrib import admin
 from .views import Home, AutoListingView, AboutUsView, CarRentView,  BookingsView, CancelBookingView
 
 
+
+
 urlpatterns = [
     path("", Home.as_view(), name="home"),
     path("cars/", AutoListingView.as_view(), name="auto_listing"),
     path("cars/rent/<int:car_id>", CarRentView.as_view(), name="car_rent"),
     path("about/", AboutUsView.as_view(), name="about_us"),
     path('bookings', BookingsView.as_view(), name="bookings"),
-    path('bookings/cancel/<int:booking_id>',CancelBookingView.as_view() ,name="cancel_booking")
+    path('bookings/cancel/<int:booking_id>',CancelBookingView.as_view() ,name="cancel_booking"),
+
 ]

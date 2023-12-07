@@ -10,6 +10,10 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .forms import CarSearchForm, CarRentForm
 from .models import Car, CarImage, Booking, User
+from django.shortcuts import render
+from .models import QuickLink
+
+
 
 class Home(TemplateView):
     template_name = "home.html"
@@ -101,3 +105,12 @@ class CancelBookingView( View):
         # Add any additional logic for cancellation, such as updating the database
         booking.delete()
         return redirect('rental:bookings')  # Redirect to the bookings list page
+
+    def your_view(request):
+        quick_links = QuickLink.objects.all()
+        return render(request, 'base.html', {'quick_links': quick_links})
+
+    from django.shortcuts import render
+
+    def home(request):
+        return render(request, 'home.html')

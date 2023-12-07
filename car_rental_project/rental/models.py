@@ -78,3 +78,14 @@ class Booking(models.Model):
         self.car.save()
         self.total_payment = self.calculate_total_payment()
         super().save(*args, **kwargs)
+
+
+
+
+
+class QuickLink(models.Model):
+    title = models.CharField(max_length=255)
+    url = models.URLField()
+
+    def __str__(self):
+        return self.title
