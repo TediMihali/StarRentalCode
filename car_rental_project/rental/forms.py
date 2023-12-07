@@ -17,7 +17,7 @@ from .models import Booking
 class CarSearchForm(forms.Form):
     brand = forms.CharField(max_length=30)
     location = forms.CharField(max_length=50)
-<<<<<<< HEAD
+
     start_date = forms.DateField()
     end_date = forms.DateField()
 
@@ -37,13 +37,3 @@ class CarRentForm(forms.ModelForm):
 
         if end_date and end_date <= timezone.now().date():
             raise ValidationError("The date must be in the future")
-=======
-    start_date = forms.DateField(validators=[future_date_validator])
-    end_date = forms.DateField(validators=[end_date_validator])
-
-# rental/forms.py
-
-
-
-
->>>>>>> 7baa5142b1a9a4ef426c5c4d0259608b0ed032bc
