@@ -9,11 +9,16 @@
 {% block content %}
 <style>
     body {
-        background: url('{% static "images/background1.png" %}') no-repeat center center fixed;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background: url(/static/images/background1.png) no-repeat center center fixed;
         background-size: cover;
         background-position: center center;
         background-attachment: fixed;
-        /* Add other background styles as needed */
+        color: #fff;
+        height: 100vh; /* Use viewport height */
+        display: flex;
+        flex-direction: column;
     }
 
     .navbar {
@@ -28,12 +33,14 @@
 
     .container_car {
         width: 60%;
-        float: center; /* Note: 'center' is not a valid value for 'float'. Consider 'left', 'right', or 'none'. */
+        margin: auto; /* Center the container */
     }
 
     .search-form {
-        margin-top: 50px; /* Adjust as needed */
+        margin-top: auto; /* Push the form to the top */
     }
+
+    
 </style>
 
 <!-- Rest of your HTML content -->
@@ -57,10 +64,7 @@
     </div>
 </div>
 
-<div class="footer-place" style="margin-top: 40px">
+<div class="footer">
     {% include 'footer.html' %}
 </div>
 {% endblock %}
-
-
-{% include 'footer.html' %}
