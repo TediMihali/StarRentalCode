@@ -3,128 +3,54 @@
 
 {% block content %}
 <style>
-    @import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
-    @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald");
-
-	.card-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 75vh;
-	}
-    .card {
-        align: center;
-        width: 300px;
+    .car-image {
+        width: 70%;
         height: auto;
-        min-height: 390px;
-        background: #636262;
-        border-radius: 30px;
-        position: relative;
-        z-index: 10;
-        margin: 25px;
-        transition: all .25s ease;
-        box-shadow:
-            0px 0px 0px 0px #00000014;
-        cursor: pointer;
+        margin: 15px;
     }
-
-    hr {
-        color: bisque;
-
+    .container_car {
+        width: 60%;
     }
-
-    .image {
-        width: calc(100% - 60px);
-        margin: 0px 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all .35s ease-out;
-
-        & img.blur {
-            position: absolute;
-            transform:
-                translate(20px, 10px) scale(.85);
-            filter: blur(5px);
-            z-index: -1;
-            opacity: .35;
-            transition: all .35s ease-out;
-        }
-
-        & img {
-            height: 200px;
-        }
-    }
-
-
-    .text {
-        padding: 20px;
-
-        & h2 {
-            font-family: "Oswald", sans-serif;
-            margin: 0px;
-            text-align: center;
-        }
-        & p {
-            font-family: "Oswald", sans-serif;
-            margin: 0px;
-            text-align: center;
-        }
-    }
-
-    .card:hover {
-        transform: translate(0, -10px);
-        box-shadow: 0px 17px 35px 0px #00000012;
-
-        & .image {
-            transform: translate(0, -15px);
-        }
-
-        & img.blur {
-            opacity: .5;
-            transform:
-                translate(25px, 26px) scale(.85);
-        }
-    }
-    .center-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+    .rent-button {
+        display: inline-block;
+        margin-top: 10px;
     }
 </style>
 
+<div class="container mt-4">
+    <div class="row justify-content-md-center">
+        {% for car in car_list %}
+            <div class="col-md-10 mb-4 container_car justify-content-center" style="padding:20px">
+                <div class="border border-secondary rounded" style="background-color:#DDDDDD">
+                    <div class="row">
+                        <div class="col-md-5 m-3">
+                            <h3>{{ car.brand }} - {{ car.model }}</h3>
+                            <p>Production Year: {{ car.production_year }}</p>
+                            <p>Color: {{ car.color }}</p>
+                            <p>Daily Rate: {% if user.is_authenticated %}{{car.discounted_daily_rate}} {% else %}{{car.daily_rate}}{% endif %} $</p>
+                            <p>Location: {{ car.location }}</p>
+                            <a href="{% url 'rental:car_rent' car_id=car.id %}" class="btn btn-dark rent-button" data-car-id="{{ car.id }}">Rent</a>
+                            <!-- Add more information as needed -->
+                        </div>
+                        <div class="col-md-5 mt-3 mr-5 mb-3">
+                            {% for image in car.car_images.all|slice:":1" %}
+                                <img src="{{ image.image.url }}" alt="{{ car.brand }} - {{ car.model }} Image" class="rounded img-fluid car-image">
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
-<div class="center-container">
-
-	{% for car in car_list %}
-
-<div class="card-container">
-     <div class="card">
-		<div class="image">
-		{% for image in car.car_images.all|slice:":1"%}
-			<img src="{{ image.image.url }}" alt="{{ car.brand }} - {{ car.model }} Image" class="rounded img-fluid car-image">
-			<img class="blur" src="{{ image.image.url }}" alt="{{ car.brand }} - {{ car.model }} Image" class="rounded img-fluid car-image">
-		{% endfor %}
-		</div>
-		<div class="text">
-			<h2>{{ car.brand }} - {{ car.model }}</h2>
-			<p>Production Year: {{ car.production_year }}</p>
-			<p>Color: {{ car.color }}</p>
-			<p>Daily Rate: {% if user.is_authenticated %}{{car.discounted_daily_rate}} {% else %}{{car.daily_rate}}{% endif %} $</p>
-			<p>Location: {{ car.location }}</p>
-			<a href="{% url 'rental:car_rent' car_id=car.id %}" class="btn btn-dark rent-button" data-car-id="{{ car.id }}">Rent</a>
-		</div>
-     </div>
-
-	{% endfor %}
 
 </div>
-
-
-
 
 <div class="footer-place" style="margin-top: 100px">
     {% include 'footer.html' %}
 </div>
 <script src="{% static 'js/rent_button.js' %}"></script>
+
+
+
 {% endblock %}
