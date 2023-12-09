@@ -5,4 +5,8 @@ footer{
     left: 0;
     width: 100%;
     transition: bottom 0.3s ease-out; /* Add a smooth transition effect */
+    #scroll-footer.show {
+    display: block;
+}
+
 }
