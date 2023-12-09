@@ -5,6 +5,12 @@
         <div class="text-center p-4 shadow" style="background-color: #DDDDDD; border-radius: 10px;">
             <h1 class="display-4 mb-4">Success</h1>
             <a href="{% url 'rental:home' %}" class="btn btn-primary btn-lg">Continue</a>
+            <div class="col-12 mt-3">
+                <p>Booking ID: {{ booking_id }}</p>
+                <p>Car: {{ car }}</p>
+                <p>Start Date: {{ start_date }}</p>
+                <p>End Date: {{ end_date }}</p>
+            </div>
         </div>
     </div>
 {% endblock %}

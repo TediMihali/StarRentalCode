@@ -1,8 +1,9 @@
-
+from django.utils.functional import SimpleLazyObject
 from django.db import models
 from django.contrib.auth import get_user_model
-User = get_user_model()
+from django.contrib.auth.models import AbstractUser
 
+User = get_user_model()
 
 # Create your models here.
 class Car(models.Model):
@@ -62,6 +63,8 @@ class Customer(models.Model):
 class Booking(models.Model):
     car = models.ForeignKey(Car, on_delete=models.DO_NOTHING)
     CUSTOMER = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+    name = models.CharField(max_length=30)
+    phone_number=models.CharField(max_length=12, help_text="Please enter your phone number +2556912345678")
     start_date = models.DateField()
     end_date = models.DateField()
     total_payment = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
@@ -75,12 +78,14 @@ class Booking(models.Model):
 
     def save(self, *args, **kwargs):
         # Calculate and set the total_payment before saving
+        if self.CUSTOMER:
+            # Assuming CUSTOMER is a User instance
+            self.name = self.CUSTOMER.name
+            self.phone_number = self.CUSTOMER.phone_number
+
         self.car.save()
         self.total_payment = self.calculate_total_payment()
         super().save(*args, **kwargs)
-
-
-
 
 
 class QuickLink(models.Model):
