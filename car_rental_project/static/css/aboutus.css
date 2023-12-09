@@ -1,11 +1,36 @@
+/* General Styling */
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f8f9fa;
   color: #495057;
 }
 
+/* Jumbotron Styling */
+.jumbotron {
+  background-color: #343a40; /* Dark color for the jumbotron background */
+  color: #ffffff; /* Text color for the jumbotron */
+  padding: 80px 20px;
+  margin-bottom: 0;
+}
+
+.jumbotron h1 {
+  font-size: 3.5em;
+}
+
+.jumbotron p {
+  font-size: 1.8em;
+}
+
+/* Card Styling */
+.card {
+  margin-bottom: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 10px; /* Rounded corners for the cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift */
+}
+
 .card-title {
-  color: #343a40;
+  color: #343a40; /* Dark color for the card titles */
   font-size: 2.5em;
   margin-bottom: 10px;
 }
@@ -15,19 +40,32 @@ body {
   font-size: 1.4em;
   line-height: 1.6;
 }
-
-.jumbotron h1 {
-  font-size: 3.5em;
-  color: #343a40;
-}
-
+.card-title,
+.card-text,
+.jumbotron h1,
 .jumbotron p {
-  font-size: 1.8em;
-  color: #6c757d;
+  transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
 }
 
+.card-title:hover,
+.card-text:hover,
+.jumbotron h1:hover,
+.jumbotron p:hover {
+  transform: scale(1.1); /* Zoom in by 10% on hover */
+}
+/* Footer Styling */
 .footer-place {
   margin-top: 200px;
+  background-color: #343a40; /* Dark color for the footer background */
+  padding: 20px 0;
+  color: #ffffff; /* Text color for the footer */
+}
+.card,
+.jumbotron {
+  transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
 }
 
+.card:hover,
+.jumbotron:hover {
+  transform: scale(1.1); /* Zoom in by 10% on hover */
 /* Add any additional styles you may need */
