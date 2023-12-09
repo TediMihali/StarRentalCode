@@ -1,63 +1,70 @@
 {% extends 'base.html' %}
 
+{% load static %}  <!-- Add this line -->
+
 {% block title %}
     Home - Star Rentals
 {% endblock %}
 
 {% block content %}
 <style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background: url(/static/images/background1.png) no-repeat center center fixed;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        color: #fff;
+        height: 100vh; /* Use viewport height */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navbar {
+        margin-bottom: 0; /* Adjust margin to fit your design */
+    }
+
     .car-image {
         width: 70%;
         height: auto;
         margin: 15px;
     }
-    .container_car{
-        width:60%;
-        float:center;
+
+    .container_car {
+        width: 60%;
+        margin: auto; /* Center the container */
     }
+
+    .search-form {
+        margin-top: auto; /* Push the form to the top */
+    }
+
+    
 </style>
 
-<!-- Search Form -->
+<!-- Rest of your HTML content -->
 <div class="container mt-4">
+    <!-- Search Form -->
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Enter location, brand, etc." aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">Go</button>
-                    </div>
-                </div>
+            <form class="search-form">
+                <!-- Your search form content -->
             </form>
+        </div>
+    </div>
+
+    <!-- Car Listings -->
+    <div class="container mt-4 justify-content-md-center">
+        <div class="row">
+            {% for car in cars %}
+                <!-- Your car listing content -->
+            {% endfor %}
         </div>
     </div>
 </div>
 
-<div class="container  mt-4 justify-content-md-center">
-    <div class="row ">
-        {% for car in cars %}
-            <div class="col-md-12 mb-4 container_car" style="padding:20px">
-                <div class="border border-secondary rounded">
-                    <div class="row">
-                        <div class="col-md-5 m-3">
-                            <h3>{{ car.brand }} - {{ car.model }}</h3>
-                            <p>Production Year: {{ car.production_year }}</p>
-                            <p>Color: {{ car.color }}</p>
-                            <p>Daily Rate: {{ car.daily_rate }} $</p>
-                            <p>Location: {{car.location}}</p>
-                            <button class="btn btn-dark">Book</button>
-                            <!-- Add more information as needed -->
-                        </div>
-                        <div class="col-md-5 mt-3 mr-5 mb-3">
-                            {% for image in car.car_images.all|slice:":1" %}
-                                <img src="{{ image.image.url }}" alt="{{ car.brand }} - {{ car.model }} Image" class="rounded img-fluid car-image">
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+<div class="footer">
+    {% include 'footer.html' %}
 </div>
-
 {% endblock %}
