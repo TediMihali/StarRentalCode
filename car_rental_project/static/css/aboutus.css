@@ -1,0 +1,33 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #495057;
+}
+
+.card-title {
+  color: #343a40;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: #6c757d;
+  font-size: 1.4em;
+  line-height: 1.6;
+}
+
+.jumbotron h1 {
+  font-size: 3.5em;
+  color: #343a40;
+}
+
+.jumbotron p {
+  font-size: 1.8em;
+  color: #6c757d;
+}
+
+.footer-place {
+  margin-top: 200px;
+}
+
+/* Add any additional styles you may need */
