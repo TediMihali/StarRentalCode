@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title mb-4">Rent this car</h2>
-                    <form method="post" action="{% if car.id %}{% url 'rental:car_rent' car.id %}{% endif %}">
+                    <form method="post" action="{% url 'rental:car_rent' car.id %}">
                         {% csrf_token %}
                         <div class="row mb-3">
                             <div class="col-md-6">

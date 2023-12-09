@@ -22,7 +22,7 @@ class CarSearchForm(forms.Form):
     end_date = forms.DateField()
 
 
-class CarRentForm(forms.ModelForm):
+class CarRentFormLoggedIn(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ['start_date', 'end_date']  # Add other fields as needed
@@ -37,3 +37,10 @@ class CarRentForm(forms.ModelForm):
 
         if end_date and end_date <= timezone.now().date():
             raise ValidationError("The date must be in the future")
+        
+# class CarRentFormLoggedOut(forms.ModelForm):
+#     class Meta:
+#         model = Booking
+#         fields = ['first_name', 'last_name', 'id_number', 'phone_number, 'start_date', 'end_date']
+    
+    

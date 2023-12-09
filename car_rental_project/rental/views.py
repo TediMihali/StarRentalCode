@@ -1,5 +1,6 @@
 from datetime import timezone
 from typing import Any
+from django.forms.forms import BaseForm
 from django.views.generic.base import TemplateView, View
 from django.views.generic import ListView
 from django.db.models import Q
@@ -8,7 +9,7 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .forms import CarSearchForm, CarRentForm
+from .forms import CarSearchForm, CarRentFormLoggedIn
 from .models import Car, CarImage, Booking, User
 from django.shortcuts import render
 from .models import QuickLink
@@ -44,7 +45,8 @@ class AboutUsView(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class CarRentView(FormView):
     template_name = "rent.html"
-    form_class = CarRentForm
+    form_class = CarRentFormLoggedIn
+
 
 
     def form_valid(self, form):
@@ -68,7 +70,7 @@ class CarRentView(FormView):
 
         booking.save()
 
-        return redirect('rental:home')  # Replace 'home' with the actual URL name for the success page
+        return redirect('rental:rent_success')  # Replace 'home' with the actual URL name for the success page
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -100,6 +102,7 @@ class BookingsView(ListView):
 
 
 class CancelBookingView( View):
+
     def post(self, request, booking_id, *args, **kwargs):
         booking = get_object_or_404(Booking, id=booking_id, CUSTOMER=request.user)
         # Add any additional logic for cancellation, such as updating the database
@@ -114,3 +117,7 @@ class CancelBookingView( View):
 
     def home(request):
         return render(request, 'home.html')
+    
+
+class RentSuccess(TemplateView):
+    template_name = 'rent_success.html'
