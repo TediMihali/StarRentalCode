@@ -53,13 +53,6 @@ body {
 .jumbotron p:hover {
   transform: scale(1.1); /* Zoom in by 10% on hover */
 }
-/* Footer Styling */
-.footer-place {
-  margin-top: 200px;
-  background-color: #343a40; /* Dark color for the footer background */
-  padding: 20px 0;
-  color: #ffffff; /* Text color for the footer */
-}
 .card,
 .jumbotron {
   transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
