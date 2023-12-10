@@ -51,6 +51,29 @@ footer{
     background-color: #343A40; 
     margin-bottom: 0px;
     margin-top:auto;
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+}
+
+#footer_link{
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0.8);
+    display: inline;
+    color:aliceblue;
+    text-decoration: none;
+    padding:10px;
+    border-radius: 2rem;
+
+    &:hover{
+        border-radius: 1rem;
+        background-color: #C8AF6C; 
+        border-color:#C8AF6C; 
+        transform: scale(1);
+    }
+
+    &:not(:hover){
+        transform: scale(0.8);
+    }
 }
 
 #footer_logo{

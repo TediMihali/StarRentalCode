@@ -13,23 +13,21 @@
 {% block content %}
 
 
-<!-- Rest of your HTML content -->
+
 <div class="container mt-4">
     <!-- Search Form -->
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form class="search-form">
-                <!-- Your search form content -->
-            </form>
-        </div>
+    <div class="form-box">
+        <form method="get" class="search_form">
+            
+        </form>
     </div>
 </div>
 
 
     <div id="ads_scroll" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#ads_scroll" data-slide-to="0" class="active"></li>
+          <li data-target="#ads_scroll" data-slide-to="1"></li>
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -39,11 +37,11 @@
             <img class="d-block w-100" src={% static "images/background3.png" %} alt="Third slide">
           </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#ads_scroll" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#ads_scroll" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
