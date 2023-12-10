@@ -57,7 +57,7 @@ class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30, null=False)
     email = models.EmailField(null=False)
-    phone_number =models.CharField(max_length=12, help_text="Please enter your phone number +2556912345678")
+    phone_number =models.CharField(max_length=12, help_text="Please enter your phone number +2556912345678", default="000000000000")
 
 
 
@@ -65,7 +65,7 @@ class Booking(models.Model):
     car = models.ForeignKey(Car, on_delete=models.DO_NOTHING)
     CUSTOMER = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, null=True)
     name = models.CharField(max_length=30)
-    phone_number=models.CharField(max_length=12, help_text="Please enter your phone number +2556912345678")
+    phone_number=models.CharField(max_length=12, help_text="Please enter your phone number +2556912345678", null=True)
     start_date = models.DateField()
     end_date = models.DateField()
     total_payment = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
@@ -78,6 +78,8 @@ class Booking(models.Model):
         return self.car.daily_rate * self.number_of_days()
 
     def save(self, *args, **kwargs):
+        
+        super().save(*args, **kwargs)
         # Calculate and set the total_payment before saving
         if self.CUSTOMER:
             # Assuming CUSTOMER is a User instance
@@ -86,7 +88,6 @@ class Booking(models.Model):
 
         self.car.save()
         self.total_payment = self.calculate_total_payment()
-        super().save(*args, **kwargs)
 
 
 class QuickLink(models.Model):
