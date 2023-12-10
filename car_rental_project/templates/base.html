@@ -10,59 +10,110 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href={% static "css/base.css" %}>
     <link rel="stylesheet" href={% static "css/aboutus.css" %}>
+    {% block links %}
+
+    {% endblock %}
 </head>
 <body>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"><img src="{% static 'images/logo.jpeg' %}" alt="Logo" style="border-radius: 50%;" width="50" height="50">
-        </a>
-    <a class="navbar-brand text-secondary">Star Rental</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href={% url "rental:home"%}>Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href={% url "rental:auto_listing"%}>Auto Listing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href={% url "rental:about_us" %}>About us</a>
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <p class="nav-link">Welcome, {{user.username}}!</p>
-            </li>
-            <li class="nav-item">
-                <button class="btn btn-danger" id="logout_button">Logout</button>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url "rental:bookings" %}">Your bookings</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href={% url "accounts:signin" %}>Sign In</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href={% url "accounts:signup" %}>Sign Up</a>
-            </li>
-            {% endif %}
+    <div class="d-flex justify-content-between" id="nav_div">
+       
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <a class="navbar-brand" href={% url "rental:home" %}><img src="{% static 'images/logo.jpeg' %}" alt="Logo" style="border-radius: 50%;" width="50" height="50"></a>
+            <a class="navbar-brand text-secondary" id="nav_link">Star Rental</a> 
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
 
-            <li class="nav-item ml-4">
-                <a class="nav-link" href={% url "admin:index" %}>Admin</a>
-            </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav m-auto d-flex justify-content-between">
+                <div class="d-flex">
+                    <li class="nav-item">
+                        <a class="nav-link nav_text" href={% url "rental:home"%} id="nav_link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav_text" href={% url "rental:auto_listing"%} id="nav_link">Auto Listing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav_text" href={% url "rental:about_us" %} id="nav_link">About us</a>
+                    </li>
+                
+                </div>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto d-flex justify-content-between">
+                <div class="d-flex">
+                    <li class="nav-item ml-5">
+                        <a class="nav-link nav_text" href={% url "admin:index" %} id='admin_button'>Admin</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <p class="nav-link nav_text">Welcome, {{user.username}}!</p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav_text" href="{% url "rental:bookings" %}" id="nav_link">Your bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-danger nav_text" id="logout_button">Logout</button>
+                    </li>
+                    
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link nav_text" href={% url "accounts:signin" %} id="nav_link">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav_text" href={% url "accounts:signup" %} id="nav_link">Sign Up</a>
+                    </li>
+                    {% endif %}
+                </div>
+            </ul>
+        </div>
+
     </div>
 </nav>
+
+<body>
 
 {% block content %}
 
 {% endblock %}
 
+<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5  border-top">
+    <div class="col mb-3" id="footer_logo_div">
+        <img src={% static "images/logo.jpeg" %} id="footer_logo" alt="Logo">
+      <p id="rights_text">©Star Rental2023 All Rights Reserved</p>
+    </div>
+
+    <div class="col mb-3">
+
+    </div>
+
+    <div class="col mb-3">
+      <h5>Socials</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2" ><a href="#"  id="footer_link">Whatsapp</a></li>
+        <li class="nav-item mb-2" ><a href="#"  id="footer_link">Instagram</a></li>
+        <li class="nav-item mb-2" ><a href="#"  id="footer_link">Facebook</a></li>
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+      <h5>Other</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2" ><a href={% url "rental:home"%}  id="footer_link">Home</a></li>
+        <li class="nav-item mb-2" ><a href="#"  id="footer_link">FAQs</a></li>
+        <li class="nav-item mb-2" ><a href={% url "rental:about_us"%} id="footer_link">About</a></li>
+      </ul>
+    </div>
+
+  </footer>
+</body>
 
 
 
@@ -79,5 +130,7 @@
     const logouturl = "{% url "accounts:logout" %}";
 </script>
 <script src="{% static 'js/logout.js' %}"></script>
+
+
 </body>
 </html>

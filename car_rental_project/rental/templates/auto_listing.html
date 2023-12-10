@@ -1,124 +1,35 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block links%}
+    <link rel="stylesheet" href={% static "css/auto_listing.css" %}>
+{% endblock%}
+
 {% block content %}
 <style>
-    @import url("https://use.fontawesome.com/releases/v6.5.1/css/all.css");
-    @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald");
-
-     .card-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 75vh; /* Optional: Adjust the height based on your design */
-    }
-    .card {
-    	align: center;
-        width: 400px;
-        height: auto;
-        min-height: 100px;
-        background: #636262;
-        border-radius: 30px;
-        position: relative;
-        z-index: 10;
-        margin: 0 30px;
-        transition: all .25s ease;
-        box-shadow:
-            0px 0px 0px 0px #00000014;
-        cursor: pointer;
-    }
-
-    hr {
-        color: bisque;
-
-    }
-
-    .image {
-        width: calc(100% - 60px);
-        margin: 0px 30px;
-        margin-top: -90px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all .35s ease-out;
-
-        & img.blur {
-            position: absolute;
-            transform:
-                translate(20px, 10px) scale(.85);
-            filter: blur(5px);
-            z-index: -1;
-            opacity: .35;
-            transition: all .35s ease-out;
-        }
-
-        & img {
-            height: 200px;
-        }
-    }
-
-
-    .text {
-    	color: white;
-        padding: 20px;
-
-        & h2 {
-            font-family: "Oswald", sans-serif;
-            margin: 0px;
-            text-align: center;
-        }
-        & p {
-            font-family: "Oswald", sans-serif;
-            margin: 0px;
-            text-align: center;
-        }
-    }
-
-    .card:hover {
-        transform: translate(0, -10px);
-        box-shadow: 0px 17px 35px 0px #00000012;
-
-        & .image {
-            transform: translate(0, -15px);
-        }
-
-        & img.blur {
-            opacity: .5;
-            transform:
-                translate(25px, 26px) scale(.85);
-        }
-    }
+   
 </style>
-
-
-	{% for car in car_list %}
-
-<div class="card-container">
-     <div class="card">
-		<div class="image">
-		{% for image in car.car_images.all|slice:":1"%}
-			<img src="{{ image.image.url }}" alt="{{ car.brand }} - {{ car.model }} Image" class="rounded img-fluid car-image">
-			<img class="blur" src="{{ image.image.url }}" alt="{{ car.brand }} - {{ car.model }} Image" class="rounded img-fluid car-image">
-		{% endfor %}
-		</div>
-		 <hr>
-		<div class="text">
-			<h2>{{ car.brand }} - {{ car.model }}</h2>
-			<p>Production Year: {{ car.production_year }}</p>
-			<p>Color: {{ car.color }}</p>
-			<p>Daily Rate: {% if user.is_authenticated %}{{car.discounted_daily_rate}} {% else %}{{car.daily_rate}}{% endif %} $</p>
-			<p>Location: {{ car.location }}</p>
-			<a href="{% url 'rental:car_rent' car_id=car.id %}" class="btn btn-dark rent-button" data-car-id="{{ car.id }}">Rent</a>
-		</div>
-     </div>
-
-	{% endfor %}
-
-
-
-
-<div class="footer-place" style="margin-top: 100px">
-    {% include 'footer.html' %}
+<div class="card-container">    
+    {% for car in car_list %}
+        <div class="card">
+            <div class="image">
+                {% for image in car.car_images.all|slice:":1"%}
+                    <img src="{{ image.image.url }}" alt="{{ car.brand }} - {{ car.model }} Image" class="rounded img-fluid car-image">
+                    <img class="blur" src="{{ image.image.url }}" alt="{{ car.brand }} - {{ car.model }} Image" class="rounded img-fluid car-image">
+                {% endfor %}
+            </div>
+            <hr>
+            <div class="text">
+                <h2 id="car_title">{{ car.brand }} - {{ car.model }}</h2>
+                <p>Production Year: {{ car.production_year }}</p>
+                <p>Color: {{ car.color }}</p>
+                <p>Daily Rate: {% if user.is_authenticated %}{{car.discounted_daily_rate}} {% else %}{{car.daily_rate}}{% endif %} $</p>
+                <p>Location: {{ car.location }}</p>
+                <a href="{% url 'rental:car_rent' car_id=car.id %}" class="btn btn-dark rent-button" id="rent_button" data-car-id="{{ car.id }}">Rent</a>
+            </div>
+        </div>
+    {% endfor %}
 </div>
+
 <script src="{% static 'js/rent_button.js' %}"></script>
-{% endblock %}
+{% endblock %}

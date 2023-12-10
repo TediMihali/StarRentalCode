@@ -1,12 +1,113 @@
-footer{
-    padding: 10px;
-    position: sticky;
-    bottom: -50px; /* Initially hide the footer below the viewport */
-    left: 0;
-    width: 100%;
-    transition: bottom 0.3s ease-out; /* Add a smooth transition effect */
-    #scroll-footer.show {
-    display: block;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+
+*{
+    font-family: 'Roboto', sans-serif;
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width:100vw
+}
+
+
+.nav_text{
+    font-size: 1.5rem;
+    margin: auto;
+}
+
+.nav_main_options{
+    display: flex;
+    justify-content: center;
+}
+
+#nav_div{
+    width: 100%;
+}
+
+#navbar_nav{
+    display: flex;
+    justify-content: center;
+}
+
+#nav_link, #admin_button{
+    transition: transform 0.3s ease-in-out;
+    margin-left:0.5vw;
+
+    &:hover {
+        border-radius: 1rem;
+        background-color: #171A23; 
+        border-color:#171A23; 
+        color: #C8AF6C; 
+        transform: scale(1.1);
+    }
+
+    &:not(:hover){
+        transform: scale(1);
+    }
+}
+
+footer{
+    width: 100vw;
+    background-color: #343A40; 
+    margin-top:auto;
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+}
+
+#footer_link{
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0.8);
+    display: inline;
+    color:aliceblue;
+    text-decoration: none;
+    padding:10px;
+    border-radius: 2rem;
+
+    &:hover{
+        border-radius: 1rem;
+        background-color: #C8AF6C; 
+        border-color:#C8AF6C; 
+        transform: scale(1);
+    }
+
+    &:not(:hover){
+        transform: scale(0.8);
+    }
+}
+
+#footer_logo{
+    width:5vw;
+    border-radius: 50%;
+    display: block;
+    margin:auto;
+    margin-bottom: 1vh;
+}
+
+#rights_text{
+    font-size: 2vh;
+    text-align: center;
+}
+
+#footer_logo_div{
+    display:block
+}
+
+#logout_button{
+    background-color: #C8AF6C;
+    border: #C8AF6C;
+    border-radius: 1rem;
+    margin-left:1rem;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover{
+        transform: scale(1.1);
+
+        
+    }
+
+    &:not(:hover){
+        transform: scale(1);
+    }
 }

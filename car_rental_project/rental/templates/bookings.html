@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href={% static "css/bookings.css"%}
+{% endblock %}
 
 {% block content %}
   <div class="container mt-5">
@@ -39,5 +44,7 @@
       <a href={% url "rental:auto_listing" %} class="btn btn-primary mt-5">Add Booking</a>
     </div>
   </div>
+
+  
 {% endblock %}
 
