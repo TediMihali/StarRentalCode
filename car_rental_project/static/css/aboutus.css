@@ -1,8 +1,8 @@
 /* General Styling */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f8f9fa;
-  color: #495057;
+  background-color: #171A23;
+  color: #ffffff;
 }
 
 /* Jumbotron Styling */
@@ -62,3 +62,4 @@ body {
 .jumbotron:hover {
   transform: scale(1.1); /* Zoom in by 10% on hover */
 /* Add any additional styles you may need */
+}

@@ -1,0 +1,33 @@
+body {
+    /* background: url(/static/images/background1.png) no-repeat center center fixed; */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    
+    
+}
+
+.navbar {
+    margin-bottom: 0; /* Adjust margin to fit your design */
+}
+
+.car-image {
+    width: 70%;
+    height: auto;
+    margin: 15px;
+}
+
+.container_car {
+    width: 60%;
+    margin: auto; /* Center the container */
+}
+
+.search-form {
+    margin-top: auto; /* Push the form to the top */
+}
+
+#ads_scroll{
+    margin:auto;
+    width:40vw;
+    margin-bottom: 2vh;
+}

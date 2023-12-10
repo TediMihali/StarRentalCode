@@ -16,7 +16,6 @@ class SignUpView(CreateView):
     form_class = SignUpForm
     
     def get_success_url(self) -> str:
-
         return reverse("rental:home")
     
     

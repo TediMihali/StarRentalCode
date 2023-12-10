@@ -1,35 +1,46 @@
 <!-- templates/sign_in.html -->
 
 {% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href={% static "css/signin.css" %}>
+{% endblock %}
+
 {% block content %}
-  <div class="container mt-4">
+
+  <div class="container mt-4" >
     <div class="row justify-content-center">
-      <div class="col-md-6 border p-4">
-        <h2 class="mb-4">Sign In</h2>
+      <div class="col-md-6 border p-4" id="sign_in_container">
+        <h2 class="mb-4" id="form_text">Sign In</h2>
         <form method="post" action="{% url 'accounts:signin' %}">
           {% csrf_token %}
-          <div class="mb-3">
-            <label for="{{ form.username.id_for_label }}">Username:</label> 
+          <div class="mb-3" id="form_fields">
+            <label for="{{ form.username.id_for_label }}" id="form_text">Username:</label> 
             {{ form.username }}
             {% if form.username.errors %}
               <div class="text-danger">{{ form.username.errors|join:", " }}</div>
             {% endif %}
           </div>
-          <div class="mb-3">
-            <label for="{{ form.password.id_for_label }}">Password:</label>
+          <div class="mb-3" id="form_fields">
+            <label for="{{ form.password.id_for_label }}" id="form_text">Password:</label>
             {{ form.password }}
             {% if form.password.errors %}
               <div class="text-danger">{{ form.password.errors|join:", " }}</div>
             {% endif %}
           </div>
-          <button type="submit" class="btn btn-primary">Sign In</button>
-          <p class="text-center">Forgot your password <a href="#">Reset Password</a></p>
-	      	<p class="text-center">Don't have a account? <a href={% url "accounts:signup" %}>Join Now</a></p>
+          <div id="form_button_div">
+          <button type="submit" id="form_button">Sign In</button>
+          </div>
+          <p class="text-center" id="form_text">Forgot your password <a href="#">Reset Password</a></p>
+	      	<p class="text-center" id="form_text">Don't have a account? <a href={% url "accounts:signup" %}>Join Now</a></p>
         </form>
       </div>
     </div>
   </div>
-<div class="footer-place" style="margin-top: 200px">
+
+<div class="footer-place">
     {% include 'footer.html' %}
 </div>
+
 {% endblock %}
