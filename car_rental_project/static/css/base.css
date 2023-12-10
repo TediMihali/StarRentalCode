@@ -30,12 +30,20 @@ body{
     justify-content: center;
 }
 
-#nav_link{
+#nav_link, #admin_button{
+    transition: transform 0.3s ease-in-out;
+    margin-left:0.5vw;
+
     &:hover {
         border-radius: 1rem;
         background-color: #171A23; 
         border-color:#171A23; 
         color: #C8AF6C; 
+        transform: scale(1.1);
+    }
+
+    &:not(:hover){
+        transform: scale(1);
     }
 }
 
@@ -60,4 +68,22 @@ footer{
 
 #footer_logo_div{
     display:block
+}
+
+#logout_button{
+    background-color: #C8AF6C;
+    border: #C8AF6C;
+    border-radius: 1rem;
+    margin-left:1rem;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover{
+        transform: scale(1.1);
+
+        
+    }
+
+    &:not(:hover){
+        transform: scale(1);
+    }
 }
