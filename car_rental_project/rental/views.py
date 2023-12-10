@@ -54,17 +54,24 @@ def car_rent_view(request, car_id):
             start_date = form.cleaned_data.get("start_date")
             end_date = form.cleaned_data.get("end_date")
 
-            if not is_car_available(car, start_date, end_date):
-                messages.error(request, "The car is not available for the selected dates.")
-                return render(request, 'rent.html', {'form': form, 'car': car})
-            
-            try:
-                user_id_str = str(request.user)
-                customer = Customer.objects.get_or_create(user=user_id_str)
+            try:    
+                user = request.user
+                customer= Customer.objects.get(user=user)
+
+                booking = Booking(
+                car=car,
+                CUSTOMER=customer,
+                name=customer.name,
+                phone_number=customer.phone_number,
+                start_date=start_date,
+                end_date=end_date
+                # Add other fields as needed
+            )
+
             except ValueError:
                 customer = None
 
-            booking = Booking(
+                booking = Booking(
                 car=car,
                 CUSTOMER=customer,
                 name=name,
@@ -73,11 +80,13 @@ def car_rent_view(request, car_id):
                 end_date=end_date
                 # Add other fields as needed
             )
+            
+        
 
             booking.save()
 
             # Get dynamic values
-            booking_id = booking.pk
+            booking_id = booking.id
             car_name = str(car)  # Assuming __str__ method is defined in the Car model
             start_date_str = str(start_date)
             end_date_str = str(end_date)
@@ -114,9 +123,7 @@ class BookingsView(ListView):
     
     def get_queryset(self):
         # Filter bookings based on the current user's ID
-        return Booking.objects.filter(
-            CUSTOMER=self.request.user
-            )
+        return Booking.objects.filter(CUSTOMER__user=self.request.user)
 
 
 class CancelBookingView( View):
