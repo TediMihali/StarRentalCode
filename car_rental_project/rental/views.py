@@ -80,7 +80,18 @@ def car_rent_view(request, car_id):
                 end_date=end_date
                 # Add other fields as needed
             )
-            
+            except TypeError:
+                customer = None
+
+                booking = Booking(
+                car=car,
+                CUSTOMER=customer,
+                name=name,
+                phone_number=phone_number,
+                start_date=start_date,
+                end_date=end_date
+                # Add other fields as needed
+            )
         
 
             booking.save()
