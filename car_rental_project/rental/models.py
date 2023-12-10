@@ -1,9 +1,9 @@
-from django.utils.functional import SimpleLazyObject
+import json
 from django.db import models
-from django.contrib.auth import get_user_model
-from django.contrib.auth.models import AbstractUser
+from django.core.serializers.json import DjangoJSONEncoder
+from django.contrib.auth.models import User
 
-User = get_user_model()
+
 
 # Create your models here.
 class Car(models.Model):
@@ -54,15 +54,16 @@ class CarImage(models.Model):
 
 
 class Customer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30, null=False)
     email = models.EmailField(null=False)
     phone_number =models.CharField(max_length=12, help_text="Please enter your phone number +2556912345678")
-    ID_Number = models.CharField(max_length=20, unique=True)
+
 
 
 class Booking(models.Model):
     car = models.ForeignKey(Car, on_delete=models.DO_NOTHING)
-    CUSTOMER = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+    CUSTOMER = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, null=True)
     name = models.CharField(max_length=30)
     phone_number=models.CharField(max_length=12, help_text="Please enter your phone number +2556912345678")
     start_date = models.DateField()

@@ -18,25 +18,31 @@
         <h2 class="mb-4" id="form_text">Sign Up</h2>
         <form method="post" action="{% url 'accounts:signup' %}">
           {% csrf_token %}
-          
-          <!-- Username Field -->
+
+          <!-- Name Field-->
           <div class="mb-3" id="form_fields">
-            <label for="{{ form.username.id_for_label }}" id="form_text">Username:</label>
-            {{ form.username }}      
+            <label for="{{ form.id_for_label }}" id="form_text">Name:</label>
+            {{ form.username }}
             {% if form.username.errors %}
               <div class="text-danger">{{ form.username.errors|join:", " }}</div>
             {% endif %}
           </div>
-          
-          <!-- ID Field -->
+
           <div class="mb-3" id="form_fields">
-            <label for="{{ form.id_for_label }}" id="form_text">ID:</label>
-            {{ form.id }}
-            {% if form.id.errors %}
-              <div class="text-danger">{{ form.id.errors|join:", " }}</div>
+            <label for="{{ form.id_for_label }}" id="form_text">Email:</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+              <div class="text-danger">{{ form.email.errors|join:", " }}</div>
             {% endif %}
           </div>
 
+          <div class="mb-3" id="form_fields">
+            <label for="{{ form.id_for_label }}" id="form_text">Phone:</label>
+            {{ form.phone_number }}
+            {% if form.phone_number.errors %}
+              <div class="text-danger">{{ form.phone_number.errors|join:", " }}</div>
+            {% endif %}
+          </div>
           <!-- Password1 Field -->
           <div class="mb-3" id="form_fields">
             <label for="{{ form.password1.id_for_label }}" id="form_text">Password:</label>

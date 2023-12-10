@@ -8,7 +8,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .forms import CarSearchForm, CarRentFormLoggedIn, CarRentFormLoggedOut
-from .models import Car, CarImage, Booking
+from .models import Car, CarImage, Booking, Customer
 from django.shortcuts import render
 from django.contrib import messages
 from .models import QuickLink
@@ -57,9 +57,16 @@ def car_rent_view(request, car_id):
             if not is_car_available(car, start_date, end_date):
                 messages.error(request, "The car is not available for the selected dates.")
                 return render(request, 'rent.html', {'form': form, 'car': car})
+            
+            try:
+                user_id_str = str(request.user)
+                customer = Customer.objects.get_or_create(user=user_id_str)
+            except ValueError:
+                customer = None
 
             booking = Booking(
                 car=car,
+                CUSTOMER=customer,
                 name=name,
                 phone_number=phone_number,
                 start_date=start_date,
@@ -70,7 +77,7 @@ def car_rent_view(request, car_id):
             booking.save()
 
             # Get dynamic values
-            booking_id = booking.id
+            booking_id = booking.pk
             car_name = str(car)  # Assuming __str__ method is defined in the Car model
             start_date_str = str(start_date)
             end_date_str = str(end_date)

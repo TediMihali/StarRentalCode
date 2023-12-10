@@ -1,16 +1,21 @@
 {% extends "base.html" %}
+{% load static%}
+
+{% block links %}
+<link rel="stylesheet" href={% static "css/rent_success.css"%}>
+{% endblock %}
 
 {% block content %}
-    <div class="container-fluid mt-5 d-flex justify-content-center align-items-center" style="min-height: 70vh;">
-        <div class="text-center p-4 shadow" style="background-color: #DDDDDD; border-radius: 10px;">
-            <h1 class="display-4 mb-4">Success</h1>
-            <a href="{% url 'rental:home' %}" class="btn btn-primary btn-lg">Continue</a>
-            <div class="col-12 mt-3">
-                <p>Booking ID: {{ booking_id }}</p>
-                <p>Car: {{ car }}</p>
-                <p>Start Date: {{ start_date }}</p>
-                <p>End Date: {{ end_date }}</p>
+    <div class="container-fluid mt-5" id="success_parent_container">
+        <div class="text-center p-4 shadow" id="success_container" >
+            <h1 class="display-4 mb-4" id="form_text">Success</h1>
+            <div class="col-12 mt-3" id="lines_text">
+                <p id="form_text">Booking ID: {{ booking_id }}</p>
+                <p id="form_text">Car: {{ car }}</p>
+                <p id="form_text">Start Date: {{ start_date }}</p>
+                <p id="form_text">End Date: {{ end_date }}</p>
             </div>
+            <a href="{% url 'rental:home' %}" id="success_button">Continue</a>
         </div>
     </div>
 

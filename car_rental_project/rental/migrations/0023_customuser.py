@@ -8,6 +8,8 @@ import django.utils.timezone
 
 class Migration(migrations.Migration):
 
+    
+
     dependencies = [
         ('auth', '0012_alter_user_first_name_max_length'),
         ('rental', '0022_booking_name_booking_phone_number'),

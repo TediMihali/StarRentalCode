@@ -12,5 +12,4 @@ urlpatterns = [
     path("about/", AboutUsView.as_view(), name="about_us"),
     path('bookings', BookingsView.as_view(), name="bookings"),
     path('bookings/cancel/<int:booking_id>',CancelBookingView.as_view() ,name="cancel_booking"),
-
 ]
