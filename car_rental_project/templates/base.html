@@ -21,7 +21,7 @@
     <div class="d-flex justify-content-between" id="nav_div">
        
         <div class="collapse navbar-collapse" id="navbarNav">
-            <a class="navbar-brand" href="#"><img src="{% static 'images/logo.jpeg' %}" alt="Logo" style="border-radius: 50%;" width="50" height="50"></a>
+            <a class="navbar-brand" href={% url "rental:home" %}><img src="{% static 'images/logo.jpeg' %}" alt="Logo" style="border-radius: 50%;" width="50" height="50"></a>
             <a class="navbar-brand text-secondary" id="nav_link">Star Rental</a> 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
