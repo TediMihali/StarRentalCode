@@ -33,8 +33,8 @@ body{
 
 #nav_link, #admin_button{
     transition: transform 0.3s ease-in-out;
-    margin-left:0.5vw;
-
+    margin-left:0.5vw;  
+    color: #CCCCCC;
     &:hover {
         border-radius: 1rem;
         background-color: #171A23; 
