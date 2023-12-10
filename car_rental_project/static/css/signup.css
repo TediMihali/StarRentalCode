@@ -4,24 +4,24 @@
 }
 
 #form_fields{
-  display:flex;
+  display:flex; 
   flex-direction: row;
   justify-content: space-between;
   background-color: transparent;
   width:70%;
-  padding:10px;
+  padding:0.4rem;
 }
 
 #form_button{
   display: inline-block;
   margin: auto;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
   font-weight: bold;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  border: 2px solid #C8AF6C; 
+  border: 0.2rem solid #C8AF6C; 
   color: #fff; 
   background-color: #C8AF6C; 
   border-radius: 5px; 
@@ -35,8 +35,9 @@
 }
 
 #sign_in_container{
+  margin-top: 2vh;
+  margin-bottom: 10svh;
   background-color: #343A40;
-  margin-top: 15rem;
   border-radius: 2rem;
 }
 

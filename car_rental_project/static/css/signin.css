@@ -38,8 +38,9 @@
 
 #sign_in_container{
   background-color: #343A40;
-  margin-top: 15rem;
+  margin-top: 5vh;
   border-radius: 2rem;
+  margin-bottom: 10vh;
 }
 
 
