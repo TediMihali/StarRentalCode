@@ -51,7 +51,7 @@ body{
 footer{
     width: 100vw;
     height:20vh;
-    background-color: #343A40; 
+    background-color: #202224; 
     margin-top:auto;
     padding-top: 2vh;
     padding-bottom: 1vh;
@@ -111,4 +111,8 @@ footer{
     &:not(:hover){
         transform: scale(1);
     }
+}
+
+#nav{
+    background-color: #202224;
 }

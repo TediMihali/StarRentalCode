@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{%static 'css/check_bookings.css'%}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-6 border p-4" id="sign_in_container">
+      <h2 class="mb-4" id="form_text">Check Booking</h2>
+      <form method="post" action="{% url 'rental:booking_info' %}">
+        {% csrf_token %}
+
+        <!-- Name Field-->
+        <div class="mb-3" id="form_fields">
+          <label for="{{ form.id_for_label }}" id="form_text">Booking ID</label>
+          {{ form.booking_id }}
+          {% if form.booking_id.errors %}
+            <div class="text-danger">{{ form.booking_id.errors|join:", " }}</div>
+          {% endif %}
+        </div>
+
+       
+        <!-- Submit Button -->
+        <div id="form_button_div">
+        <button type="submit" id="form_button">Check</button>
+        <div id="form_button_div">
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.edit import FormView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .forms import CarSearchForm, CarRentFormLoggedIn, CarRentFormLoggedOut
+from .forms import CarSearchForm, CarRentFormLoggedIn, CarRentFormLoggedOut, CheckBookingForm
 from .models import Car, CarImage, Booking, Customer
 from django.shortcuts import render
 from django.contrib import messages
@@ -163,3 +163,12 @@ def rent_success(request, booking_id, car, start_date, end_date):
     }
 
     return render(request, 'rent_success.html', context)
+
+class CheckBookingsView(FormView):
+    template_name = "check_bookings.html"
+    form_class = CheckBookingForm
+
+class BookingInfoView(TemplateView):
+    template_name = "booking_info.html"
+    
+

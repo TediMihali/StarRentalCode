@@ -53,3 +53,6 @@ class CarRentFormLoggedOut(forms.ModelForm):
 
         if end_date and end_date <= timezone.now().date():
             raise ValidationError("The date must be in the future")
+
+class CheckBookingForm(forms.Form):
+    booking_id = forms.IntegerField()

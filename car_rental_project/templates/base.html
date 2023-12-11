@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href={% static "css/base.css" %}>
-    <link rel="stylesheet" href={% static "css/aboutus.css" %}>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aboutus.css' %}">
     {% block links %}
 
     {% endblock %}
@@ -17,11 +17,11 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" id="nav">
     <div class="d-flex justify-content-between" id="nav_div">
        
         <div class="collapse navbar-collapse" id="navbarNav">
-            <a class="navbar-brand" href={% url "rental:home" %}><img src="{% static 'images/logo.jpeg' %}" alt="Logo" style="border-radius: 50%;" width="50" height="50"></a>
+            <a class="navbar-brand" href="{% url 'rental:home' %}"><img src="{% static 'images/logo.jpeg' %}" alt="Logo" style="border-radius: 50%;" width="50" height="50"></a>
             <a class="navbar-brand text-secondary" id="nav_link">Star Rental</a> 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,13 +33,13 @@
             <ul class="navbar-nav m-auto d-flex justify-content-between">
                 <div class="d-flex">
                     <li class="nav-item">
-                        <a class="nav-link nav_text" href={% url "rental:home"%} id="nav_link">Home</a>
+                        <a class="nav-link nav_text" href="{% url 'rental:home' %}" id="nav_link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav_text" href={% url "rental:auto_listing"%} id="nav_link">Auto Listing</a>
+                        <a class="nav-link nav_text" href="{% url 'rental:auto_listing' %}" id="nav_link">Auto Listing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav_text" href={% url "rental:about_us" %} id="nav_link">About us</a>
+                        <a class="nav-link nav_text" href="{% url 'rental:about_us' %}" id="nav_link">About us</a>
                     </li>
                 
                 </div>
@@ -50,7 +50,7 @@
             <ul class="navbar-nav ml-auto d-flex justify-content-between">
                 <div class="d-flex">
                     <li class="nav-item ml-5">
-                        <a class="nav-link nav_text" href={% url "admin:index" %} id='admin_button'>Admin</a>
+                        <a class="nav-link nav_text" href="{% url 'admin:index' %}" id='admin_button'>Admin</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -65,10 +65,13 @@
                     
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link nav_text" href={% url "accounts:signin" %} id="nav_link">Sign In</a>
+                        <a class="nav-link nav_text" href="{% url 'accounts:signin' %}" id="nav_link">Sign In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav_text" href={% url "accounts:signup" %} id="nav_link">Sign Up</a>
+                        <a class="nav-link nav_text" href="{% url 'accounts:signup' %}" id="nav_link">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav_text" href="{% url 'rental:check_bookings' %}" id="nav_link">Check Booking</a>
                     </li>
                     {% endif %}
                 </div>
@@ -86,7 +89,7 @@
 
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5  border-top">
     <div class="col mb-3" id="footer_logo_div">
-        <img src={% static "images/logo.jpeg" %} id="footer_logo" alt="Logo">
+        <img src="{% static 'images/logo.jpeg' %}" id="footer_logo" alt="Logo">
       <p id="rights_text">©Star Rental2023 All Rights Reserved</p>
     </div>
 
@@ -112,9 +115,9 @@
     <div class="col mb-3">
       <h5>Other</h5>
       <ul class="nav flex-column">
-        <li class="nav-item mb-2" ><a href={% url "rental:home"%}  id="footer_link">Home</a></li>
+        <li class="nav-item mb-2" ><a href="{% url 'rental:home' %}"  id="footer_link">Home</a></li>
         <li class="nav-item mb-2" ><a href="#"  id="footer_link">FAQs</a></li>
-        <li class="nav-item mb-2" ><a href={% url "rental:about_us"%} id="footer_link">About</a></li>
+        <li class="nav-item mb-2" ><a href="{% url 'rental:about_us' %}" id="footer_link">About</a></li>
       </ul>
     </div>
 
@@ -133,7 +136,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script>
-    const logouturl = "{% url "accounts:logout" %}";
+    const logouturl = "{% url 'accounts:logout' %}";
 </script>
 <script src="{% static 'js/logout.js' %}"></script>
 
