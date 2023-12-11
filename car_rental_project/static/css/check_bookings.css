@@ -1,0 +1,48 @@
+
+#form_text{
+    color: #C8AF6C;
+    text-align: center;
+  }
+  
+  #form_fields{
+    display:flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: transparent;
+    width:70%;
+    padding:0.4rem;
+  }
+  
+  #form_button{
+    display: inline-block;
+    margin: auto;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0.2rem solid #C8AF6C; 
+    color: #fff; 
+    background-color: #C8AF6C; 
+    border-radius: 5px; 
+    transition: background-color 0.3s, color 0.3s; 
+  
+    &:hover {
+        background-color: rgb(143, 119, 54); 
+        border-color: rgb(143, 119, 54); 
+        color: #fff; 
+    }
+  }
+  
+  #sign_in_container{
+    margin-top: 2vh;
+    margin-bottom: 10svh;
+    background-color: #343A40;
+    border-radius: 2rem;
+  }
+  
+  #form_button_div{
+    display: flex;
+    justify-content: center;
+  }

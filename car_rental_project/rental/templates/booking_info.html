@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/booking_info.css'%}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-6 border p-4" id="sign_in_container">
+        <h2 class="mb-4" id="form_text">Booking Info</h2>
+        
+      </div>
+    </div>
+  </div>
+{% endblock %}
