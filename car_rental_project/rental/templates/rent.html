@@ -1,44 +1,49 @@
     {% extends "base.html" %}
+    {% load static%}
+
+    {% block links %}
+    <link rel="stylesheet" href="{% static 'css/rent.css' %}"
+    {% endblock%}
 
     {% block content %}
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div class="row justify-content-center" >
-            <div class="col-md-10 custom-bg-color" >
-                <div class="card" style="background-color:#DDDDDD">
-                    <div class="card-body">
-                        <h2 class="card-title mb-4">Rent this car</h2>
+            <div class="col-md-10 custom-bg-color" id="inner_container" >
+                <div  >
+                    <div>
+                        <h2 class="mb-4 p-2" id="form_title">Rent this car</h2>
                         <form method="post" action="{% url 'rental:car_rent' car.id %}">
                             {% csrf_token %}
                             <div class="row mb-3">
-                                <div class="col-md-5">
+                                <div class="col-md-5 p-2" id="box_col">
                                     {% if not user.is_authenticated%}
-                                    <label for={{ form.name.for_label}} class="form-label">Name:</label>
+                                    <label for={{ form.name.for_label}} class="form-label" id="form_label">Name:</label>
                                     <input type="text" id="{{form.name.id_for_label}}" name="{{form.name.name}}" class="form-control" required>
                                     {% if form.name.errors %}
                                     <div class="text-danger">{{ form.name.errors|join:", " }}</div>
                                     {% endif %}
                                     <br>
-                                    <label for={{ form.phone_number.for_label}} class="form-label">Phone Number:</label>
+                                    <label for={{ form.phone_number.for_label}} class="form-label" id="form_label">Phone Number:</label>
                                     <input type="text" id="{{form.phone_number.id_for_label}}" name="{{form.phone_number.name}}" class="form-control" required>
                                     {% if form.phone_number.errors %}
                                     <div class="text-danger">{{ form.phone_number.errors|join:", " }}</div>
                                     {% endif %}
                                     <br>
                                     {% endif%}
-                                    <label for="{{ form.start_date.id_for_label }}" class="form-label">Start Date:</label>
+                                    <label for="{{ form.start_date.id_for_label }}" class="form-label" id="form_label">Start Date:</label>
                                     <input type="date" id="{{ form.start_date.id_for_label }}" name="{{ form.start_date.name }}" class="form-control" required>
                                     {% if form.start_date.errors %}
                                         <div class="text-danger">{{ form.start_date.errors|join:", " }}</div>
                                     {% endif %}
                                     <br>
-                                    <label for="{{ form.end_date.id_for_label }}" class="form-label">End Date:</label>
+                                    <label for="{{ form.end_date.id_for_label }}" class="form-label" id="form_label">End Date:</label>
                                     <input type="date" id="{{ form.end_date.id_for_label }}" name="{{ form.end_date.name }}" class="form-control" required>
                                     {% if form.end_date.errors %}
                                         <div class="text-danger">{{ form.end_date.errors|join:", " }}</div>
                                     {% endif %}
                                 </div>
 
-                                <div class="col-md-5">
+                                <div class="col-md-5 p-2" id="box_col">
                                     <div id="carouselExample" class="carousel slide" data-ride="carousel">
                                         <div class="carousel-inner">
                                             {% for image in car.car_images.all %}
@@ -60,9 +65,8 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
-                                    <!-- Your form content goes here -->
-                                    <button type="submit" class="btn btn-primary" value="save">Rent</button>
+                                <div class="col-md-6" id="button_container">
+                                    <button type="submit" class="btn btn-primary" value="save" id="form_button">Rent</button>
                                 </div>
                             </div>
                         </form>

@@ -7,11 +7,11 @@
 
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid" id="big_box">
   <div class="row justify-content-center">
-    <div class="col-md-6 border p-4" id="sign_in_container">
+    <div class="col-md-6" id="check_container">
       <h2 class="mb-4" id="form_text">Check Booking</h2>
-      <form method="post" action="{% url 'rental:booking_info' %}">
+      <form method="post" action="{% if form.booking_id.value %}{% url 'rental:booking_info' form.booking_id.value %}{% endif %}">
         {% csrf_token %}
 
         <!-- Name Field-->
@@ -27,7 +27,7 @@
         <!-- Submit Button -->
         <div id="form_button_div">
         <button type="submit" id="form_button">Check</button>
-        <div id="form_button_div">
+        </div id="form_button_div">
       </form>
     </div>
   </div>

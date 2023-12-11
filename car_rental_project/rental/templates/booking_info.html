@@ -2,16 +2,34 @@
 {% load static %}
 
 {% block links %}
-<link rel="stylesheet" href="{% static 'css/booking_info.css'%}">
+<link rel="stylesheet" href="{% static 'css/booking_info.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-md-6 border p-4" id="sign_in_container">
-        <h2 class="mb-4" id="form_text">Booking Info</h2>
-        
-      </div>
+        <div class="col-md-6" id="booking_info_container">
+            <h2 class="mb-4" id="form_text">Booking Information</h2>
+
+            {% if booking %}
+                <p id="form_fields"><strong>Booking ID:</strong> {{ booking.id }}</p>
+                <p><strong>Name:</strong> {{ booking.name }}</p>
+                <p><strong>Name:</strong> {{ booking.car.brand }} {{ booking.car.model}}</p>
+                <p><strong>Start Date:</strong> {{ booking.start_date }}</p>
+                <p><strong>End Date:</strong> {{ booking.end_date }}</p>
+                <!-- Add other fields as needed -->
+            {% else %}
+                <p>No booking information available.</p>
+            {% endif %}
+            <div id="buttons">
+              <a href="{%url 'rental:home' %}" id="home_button">Home</a>
+              <form method="post" action={% url "rental:cancel_booking" booking.id %}>
+                {% csrf_token %}
+                <button type="submit" id="cancel_button">Cancel</button>
+              </form>
+              
+            </div>
+        </div>
     </div>
-  </div>
+</div>
 {% endblock %}

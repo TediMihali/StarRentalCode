@@ -35,10 +35,12 @@
     }
   }
   
-  #sign_in_container{
-    margin-top: 2vh;
+  #check_container{
+    padding-top: 5vh;
+    margin-top: 5vh;
     margin-bottom: 10svh;
-    background-color: #343A40;
+    background-color: #202224;
+    box-shadow: 0 5px 35px 5px rgba(255, 255, 255, 0.05);
     border-radius: 2rem;
   }
   

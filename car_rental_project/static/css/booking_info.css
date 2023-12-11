@@ -1,0 +1,70 @@
+#form_text{
+    color: #C8AF6C;
+    text-align: center;
+  }
+  
+#info_fields{
+    color:#fff;
+    text-align: center;
+}
+  
+#buttons{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+#home_button{
+    width:10vw;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #C8AF6C; 
+    color: #fff; 
+    background-color: #C8AF6C; 
+    border-radius: 5px; 
+    transition: background-color 0.3s, color 0.3s; 
+  
+    /* Add hover effect */
+    &:hover {
+        background-color: rgb(143, 119, 54); 
+        border-color: rgb(143, 119, 54); 
+        color: #fff; 
+    }
+  }
+  
+  #cancel_button{
+    width:10vw;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #8a3838; 
+    color: #fff; 
+    background-color: #8a3838; 
+    border-radius: 5px; 
+    transition: background-color 0.3s, color 0.3s; 
+  
+    /* Add hover effect */
+    &:hover {
+        background-color: rgb(125, 17, 20); 
+        border-color: rgb(125, 17, 20); 
+        color: #fff; 
+    }
+
+  }
+
+  #booking_info_container{
+    background-color: #202224;
+    margin-top: 5vh;
+    border-radius: 2rem;
+    margin-bottom: 10vh;
+    box-shadow: 0 5px 35px 5px rgba(255, 255, 255, 0.05);
+  }
+  

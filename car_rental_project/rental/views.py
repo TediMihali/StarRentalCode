@@ -2,7 +2,7 @@ from typing import Any
 from django.views.generic.base import TemplateView, View
 from django.views.generic import ListView
 from django.db.models import Q
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.edit import FormView
 from django.contrib.auth.decorators import login_required
@@ -140,10 +140,13 @@ class BookingsView(ListView):
 class CancelBookingView( View):
 
     def post(self, request, booking_id, *args, **kwargs):
-        booking = get_object_or_404(Booking, id=booking_id, CUSTOMER=request.user)
+        booking = get_object_or_404(Booking, id=booking_id)
         # Add any additional logic for cancellation, such as updating the database
         booking.delete()
-        return redirect('rental:bookings')  # Redirect to the bookings list page
+        if request.user.is_authenticated:
+            return redirect("rental:bookings")  # Redirect to the bookings list page
+        else:
+            return redirect("rental:home")
 
     def your_view(request):
         quick_links = QuickLink.objects.all()
@@ -168,7 +171,22 @@ class CheckBookingsView(FormView):
     template_name = "check_bookings.html"
     form_class = CheckBookingForm
 
+    def form_valid(self, form):
+        booking_id = form.cleaned_data.get("booking_id")
+        # Redirect to the booking_info page with the correct booking_id
+        return redirect('rental:booking_info', booking_id=booking_id)
+
 class BookingInfoView(TemplateView):
     template_name = "booking_info.html"
     
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
 
+        booking_id = self.kwargs['booking_id']
+        try:
+            booking = Booking.objects.get(id=booking_id)
+            context['booking'] = booking
+        except Booking.DoesNotExist:
+            context['booking': None]
+
+        return context

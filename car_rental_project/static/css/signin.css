@@ -37,10 +37,12 @@
 }
 
 #sign_in_container{
-  background-color: #343A40;
+  background-color: #202224;
   margin-top: 5vh;
   border-radius: 2rem;
   margin-bottom: 10vh;
+  box-shadow: 0 5px 35px 5px rgba(255, 255, 255, 0.05);
+  cursor: pointer;
 }
 
 
