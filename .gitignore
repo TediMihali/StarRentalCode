@@ -3,3 +3,4 @@
 .idea
 venv
 car_rental_project/.idea
+/car_rental_project/db.sqlite3

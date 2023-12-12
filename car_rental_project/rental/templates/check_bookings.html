@@ -11,6 +11,9 @@
   <div class="row justify-content-center">
     <div class="col-md-6" id="check_container">
       <h2 class="mb-4" id="form_text">Check Booking</h2>
+      
+      
+
       <form method="post" action="{% if form.booking_id.value %}{% url 'rental:booking_info' form.booking_id.value %}{% endif %}">
         {% csrf_token %}
 
@@ -22,7 +25,12 @@
             <div class="text-danger">{{ form.booking_id.errors|join:", " }}</div>
           {% endif %}
         </div>
-
+        
+        {% if messages %}
+          {% for message in messages %}
+            <p style="text-align: center; color: brown;"{% if message.tags %}  class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+          {% endfor %}
+        {% endif %}
        
         <!-- Submit Button -->
         <div id="form_button_div">
@@ -32,5 +40,6 @@
     </div>
   </div>
 </div>
+
 
 {% endblock %}

@@ -2,7 +2,7 @@
     {% load static%}
 
     {% block links %}
-    <link rel="stylesheet" href="{% static 'css/rent.css' %}"
+    <link rel="stylesheet" href="{% static 'css/rent.css' %}">
     {% endblock%}
 
     {% block content %}
@@ -62,6 +62,14 @@
                                         </a>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div  id="error_message">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <p  style="text-align: center; color: brown;"{% if message.tags %}  class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                                    {% endfor %}
+                                {% endif %}
                             </div>
 
                             <div class="row">

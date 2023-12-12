@@ -54,63 +54,66 @@ def car_rent_view(request, car_id):
             start_date = form.cleaned_data.get("start_date")
             end_date = form.cleaned_data.get("end_date")
 
-            try:    
-                user = request.user
-                customer= Customer.objects.get(user=user)
+            if is_car_available(car, start_date, end_date):
+                try:
+                    user = request.user
+                    customer = Customer.objects.get(user=user)
 
-                booking = Booking(
-                car=car,
-                CUSTOMER=customer,
-                name=customer.name,
-                phone_number=customer.phone_number,
-                start_date=start_date,
-                end_date=end_date
-                # Add other fields as needed
-            )
+                    booking = Booking(
+                        car=car,
+                        CUSTOMER=customer,
+                        name=customer.name,
+                        phone_number=customer.phone_number,
+                        start_date=start_date,
+                        end_date=end_date
+                        # Add other fields as needed
+                    )
+                except ValueError:
+                    customer = None
 
-            except ValueError:
-                customer = None
+                    booking = Booking(
+                        car=car,
+                        CUSTOMER=customer,
+                        name=name,
+                        phone_number=phone_number,
+                        start_date=start_date,
+                        end_date=end_date
+                        # Add other fields as needed
+                    )
+                except TypeError:
+                    customer = None
 
-                booking = Booking(
-                car=car,
-                CUSTOMER=customer,
-                name=name,
-                phone_number=phone_number,
-                start_date=start_date,
-                end_date=end_date
-                # Add other fields as needed
-            )
-            except TypeError:
-                customer = None
+                    booking = Booking(
+                        car=car,
+                        CUSTOMER=customer,
+                        name=name,
+                        phone_number=phone_number,
+                        start_date=start_date,
+                        end_date=end_date
+                        # Add other fields as needed
+                    )
 
-                booking = Booking(
-                car=car,
-                CUSTOMER=customer,
-                name=name,
-                phone_number=phone_number,
-                start_date=start_date,
-                end_date=end_date
-                # Add other fields as needed
-            )
-        
+                booking.save()
 
-            booking.save()
+                # Get dynamic values
+                booking_id = booking.id
+                car_name = str(car)  # Assuming __str__ method is defined in the Car model
+                start_date_str = str(start_date)
+                end_date_str = str(end_date)
 
-            # Get dynamic values
-            booking_id = booking.id
-            car_name = str(car)  # Assuming __str__ method is defined in the Car model
-            start_date_str = str(start_date)
-            end_date_str = str(end_date)
+                # Using reverse with dynamic values
+                redirect_link = reverse('rental:rent_success', kwargs={
+                    'booking_id': booking_id,
+                    'car': car_name,
+                    'start_date': start_date_str,
+                    'end_date': end_date_str,
+                })
 
-            # Using reverse with dynamic values
-            redirect_link = reverse('rental:rent_success', kwargs={
-                'booking_id': booking_id,
-                'car': car_name,
-                'start_date': start_date_str,
-                'end_date': end_date_str,
-            })
-
-            return redirect(redirect_link)
+                return redirect(redirect_link)
+            else:
+                messages.error(request, "Car is not available for the selected dates.")
+        else:
+            messages.error(request, "Form submission error. Please check your input.")
 
     else:
         form = CarRentFormLoggedIn() if request.user.is_authenticated else CarRentFormLoggedOut()
@@ -126,6 +129,8 @@ def is_car_available(car, start_date, end_date):
     )
 
     return not overlapping_bookings.exists()
+
+
 @method_decorator(login_required, name="dispatch")
 class BookingsView(ListView):
     model = Booking
@@ -173,8 +178,18 @@ class CheckBookingsView(FormView):
 
     def form_valid(self, form):
         booking_id = form.cleaned_data.get("booking_id")
+
+        try:
+            list(messages.get_messages(self.request))
+            Booking.objects.get(id=booking_id)
+        except Booking.DoesNotExist:
+            messages.error(self.request, "Booking is not valid")
+            return redirect("rental:check_bookings")
+
         # Redirect to the booking_info page with the correct booking_id
         return redirect('rental:booking_info', booking_id=booking_id)
+        
+    
 
 class BookingInfoView(TemplateView):
     template_name = "booking_info.html"
