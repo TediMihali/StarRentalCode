@@ -29,6 +29,13 @@
               <div class="text-danger">{{ form.password.errors|join:", " }}</div>
             {% endif %}
           </div>
+          
+          {% if messages %}
+            {% for message in messages %}
+              <p  style="text-align: center; color: brown;"{% if message.tags %}  class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+          
           <div id="form_button_div">
           <button type="submit" id="form_button">Sign In</button>
           </div>

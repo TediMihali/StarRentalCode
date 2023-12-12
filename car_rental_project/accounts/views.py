@@ -52,7 +52,7 @@ def signup_view(request):
                 messages.error(request, 'An error occurred while creating the user and customer.')
                 return render(request, 'sign_up.html', {'form': form})
         else:
-            messages.error(request, 'Form    is not valid. Please check the data you provided.')
+            messages.error(request, 'Form is not valid. Please check the data you provided.')
             return render(request, 'sign_up.html', {'form': form})
     else:
         form = SignUpForm()
@@ -63,6 +63,11 @@ class SignInView(LoginView):
     template_name = "sign_in.html"
     form_class = SignInForm
 
+    def form_invalid(self, form):
+        list(messages.get_messages(self.request))
+        messages.error(self.request, "Invalid username or password. Please try again.")
+        return super().form_invalid(form)
+        
     def get_success_url(self) -> str:
         return reverse("rental:home")
     
