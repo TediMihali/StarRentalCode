@@ -64,6 +64,7 @@ body {
 }
 
 .google-map {
+  margin: 2rem;
   padding-bottom: 50%;
   position: relative;
 }

@@ -11,7 +11,6 @@ from .forms import CarSearchForm, CarRentFormLoggedIn, CarRentFormLoggedOut, Che
 from .models import Car, CarImage, Booking, Customer
 from django.shortcuts import render
 from django.contrib import messages
-from .models import QuickLink
 
 
 
@@ -68,6 +67,7 @@ def car_rent_view(request, car_id):
                         end_date=end_date
                         # Add other fields as needed
                     )
+                    booking.total_payment = booking.calculate_total_payment() 
                 except ValueError:
                     customer = None
 
@@ -80,6 +80,7 @@ def car_rent_view(request, car_id):
                         end_date=end_date
                         # Add other fields as needed
                     )
+                    booking.total_payment = booking.calculate_total_payment() 
                 except TypeError:
                     customer = None
 
@@ -92,7 +93,7 @@ def car_rent_view(request, car_id):
                         end_date=end_date
                         # Add other fields as needed
                     )
-
+                    booking.total_payment = booking.calculate_total_payment() 
                 booking.save()
 
                 # Get dynamic values

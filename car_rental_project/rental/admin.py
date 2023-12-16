@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import Car, Booking, Customer, CarImage
 from django.contrib import admin
-from .models import QuickLink
 from django import forms 
 
 
@@ -28,4 +27,3 @@ admin.site.register(Car, CarAdmin)
 admin.site.register(Booking)
 admin.site.register(Customer)
 admin.site.register(CarImage)
-admin.site.register(QuickLink)

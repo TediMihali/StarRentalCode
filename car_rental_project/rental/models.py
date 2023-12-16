@@ -51,7 +51,9 @@ class Car(models.Model):
 class CarImage(models.Model):
     car = models.ForeignKey(Car, related_name="car_images", on_delete=models.CASCADE)
     image = models.ImageField(upload_to="cars/images/")
-
+    
+    def __str__(self) -> str:
+        return f"Car Image {self.id}"
 
 class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -59,6 +61,8 @@ class Customer(models.Model):
     email = models.EmailField(null=False)
     phone_number =models.CharField(max_length=12, help_text="Please enter your phone number +2556912345678", default="000000000000")
 
+    def __str__(self) -> str:
+        return self.name
 
 
 class Booking(models.Model):
@@ -89,10 +93,6 @@ class Booking(models.Model):
         self.car.save()
         self.total_payment = self.calculate_total_payment()
 
-
-class QuickLink(models.Model):
-    title = models.CharField(max_length=255)
-    url = models.URLField()
-
     def __str__(self):
-        return self.title
+        return f"{self.car.brand}- {self.car.model} -{self.name}"
+    
