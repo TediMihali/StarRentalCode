@@ -205,3 +205,8 @@ class BookingInfoView(TemplateView):
             context['booking': None]
 
         return context
+    
+
+
+class FAQS(TemplateView):
+    template_name="faq.html"

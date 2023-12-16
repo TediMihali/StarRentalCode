@@ -103,11 +103,15 @@
       <h5>Other</h5>
       <ul class="nav flex-column">
         <li class="nav-item mb-2" ><a href="{% url 'rental:home' %}"  id="footer_link">Home</a></li>
-        <li class="nav-item mb-2" ><a href="#"  id="footer_link">FAQs</a></li>
-        <li class="nav-item mb-2" ><a href="{% url 'rental:about_us' %}" id="footer_link">About</a></li>
+        <li class="nav-item mb-2" ><a href="{% url "rental:faqs" %}"  id="footer_link">FAQs</a></li>
+        <li class="nav-item mb-2" ><a href="{% url 'rental:about_us' %}" id="footer_link">About</a></li> 
       </ul>
     </div>
-
+    <div class="col mb-3">
+        <ul class="nav flex-column">
+            <li class="nav-item m-auto" ><a href="{% url 'rental:about_us' %}" id="footer_link"> Leave a review</a></li>
+        </ul>
+    </div>
   </footer>
 </body>
 
