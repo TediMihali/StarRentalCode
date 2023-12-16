@@ -62,3 +62,16 @@ body {
   transform: scale(1.1); /* Zoom in by 10% on hover */
 /* Add any additional styles you may need */
 }
+
+.google-map {
+  padding-bottom: 50%;
+  position: relative;
+}
+
+.google-map iframe {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
