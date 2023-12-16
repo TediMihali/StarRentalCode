@@ -1,5 +1,5 @@
     {% extends "base.html" %}
-    {% load static%}
+    {% load static %}
 
     {% block links %}
     <link rel="stylesheet" href="{% static 'css/rent.css' %}">
@@ -9,7 +9,7 @@
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center" >
             <div class="col-md-10 custom-bg-color" id="inner_container" >
-                <div  >
+                <div>
                     <div>
                         <h2 class="mb-4 p-2" id="form_title">Rent this car</h2>
                         <form method="post" action="{% url 'rental:car_rent' car.id %}">
