@@ -37,6 +37,8 @@
   }
   
   #check_container{
+    border: 1px solid #ffffff33;
+    box-shadow: 0 5px 35px 5px rgba(255, 255, 255, 0.1);
     padding-top: 5vh;
     margin-top: 5vh;
     margin-bottom: 10svh;

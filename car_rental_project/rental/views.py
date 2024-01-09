@@ -131,6 +131,11 @@ def is_car_available(car, start_date, end_date):
 
     return not overlapping_bookings.exists()
 
+def car_info(request, car_id):
+    car = get_object_or_404(Car, id=car_id)
+    context = {'car':car}
+    return render(request, 'car_info.html', context)
+
 
 @method_decorator(login_required, name="dispatch")
 class BookingsView(ListView):

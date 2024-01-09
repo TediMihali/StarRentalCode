@@ -52,7 +52,6 @@ footer{
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100vw;
-    box-sizing: box;
     height:20vh;
     background-color: #202224; 
     margin-top:auto;
