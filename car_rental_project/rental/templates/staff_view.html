@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/bookings.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="mb-4">Bookings List</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Car</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Total Payment</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <hr>
+        <tbody>
+          {% for booking in bookings_list %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+            {% if booking.CUSTOMER != NULL %}
+              <td>{{ booking.CUSTOMER.name }}</td>
+              <td>{{ booking.CUSTOMER.phone_number}}</td>
+            {% else %}
+                <td>{{ booking.name }}</td>
+                <td>{{ booking.phone_number }}</td>
+            {% endif %}
+                <td>{{ booking.car }}</td>
+                <td>{{ booking.start_date }}</td>
+                <td>{{ booking.end_date }}</td>
+                <td>{{ booking.total_payment }}</td>
+                <td> 
+                    <form method="post" action={% url "rental:cancel_booking" booking.id %}>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Cancel</button>
+                    </form>
+                </td>
+            </tr>
+            <hr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <hr>
+    </div>
+  </div>
+
+  
+{% endblock %}
+

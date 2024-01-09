@@ -50,6 +50,7 @@ body{
 footer{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 100vw;
     box-sizing: box;
     height:20vh;
@@ -62,8 +63,7 @@ footer{
 .footer-col{ 
  margin-top: 0vh;
  margin-left: 2vw;
- flex: 1 0 100%; 
- box-sizing: border-box; 
+ flex: 1 0 15vw;
  padding: 10px; 
 }
 
@@ -89,7 +89,7 @@ footer{
 }
 
 #footer_logo{
-    width:5vw;
+    width:5vw;  
     border-radius: 50%;
     display: block;
     margin:auto;
@@ -128,17 +128,3 @@ footer{
 #nav{
     background-color: #202224;
 }
-
-.footer-titles{
-    
-}
-
-@media screen and (min-width: 768px) {
-    footer{
-        justify-content: center;
-    }
-    .footer-col{
-      flex: 1; /* Reset flex property for larger screens */
-      margin-left: 0;
-    }
-  }

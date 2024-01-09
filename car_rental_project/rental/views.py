@@ -208,6 +208,17 @@ class BookingInfoView(TemplateView):
         return context
     
 
+@method_decorator(login_required, name="dispatch")
+class StaffView(ListView):
+    model = Booking
+    template_name = "staff_view.html"
+    context_object_name = "bookings_list"
+    
+    def get_queryset(self):
+        # Get all the bookings to be manipulated by staff
+        return Booking.objects.all()
+
 
 class FAQS(TemplateView):
     template_name="faq.html"
+

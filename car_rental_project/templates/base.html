@@ -39,12 +39,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'rental:about_us' %}" id="nav_link">About us</a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'admin:index' %}" id='admin_button'>Admin</a>
-                </li>
                 
                 {% if user.is_authenticated %}
+                    {% if user.is_staff == True %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin:index' %}" id='admin_button'>Admin</a>
+                        </li>
+                    {% elif staff_account %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'rental:staff_view' %}" id='admin_button'>Admin</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url "rental:bookings" %}" id="nav_link">Your bookings</a>
                     </li>
@@ -81,28 +86,28 @@
     </div>
 
 
-   <div class="footer-col">
-  <h5 class="footer-titles">Socials</h5>
-  <ul class="nav flex-column">
-    <li class="nav-item mb-2">
-      <a href="https://www.instagram.com/star_rental_/?igshid=NzZlODBkYWE4Ng%3D%3D" id="footer_link">Instagram</a>
-    </li>
-    <li class="nav-item mb-2">
-      <a href="https://api.whatsapp.com/send?phone=355692830277" id="footer_link">Whatsapp</a>
-    </li>
-    <li class="nav-item mb-2">
-      <a href="https://www.facebook.com/your_facebook_page/" id="footer_link">Facebook</a>
-    </li>
-  </ul>
-</div>
+    <div class="footer-col">
+        <h5 class="footer-titles">Socials</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2">
+            <a href="https://www.instagram.com/star_rental_/?igshid=NzZlODBkYWE4Ng%3D%3D" id="footer_link">Instagram</a>
+            </li>
+            <li class="nav-item mb-2">
+            <a href="https://api.whatsapp.com/send?phone=355692830277" id="footer_link">Whatsapp</a>
+            </li>
+            <li class="nav-item mb-2">
+            <a href="https://www.facebook.com/your_facebook_page/" id="footer_link">Facebook</a>
+            </li>
+        </ul>
+    </div>
 
     <div class="footer-col">
-      <h5 class="footer-titles">Other</h5>
-      <ul class="nav flex-column">
-        <li class="nav-item mb-2" ><a href="{% url 'rental:home' %}"  id="footer_link">Home</a></li>
-        <li class="nav-item mb-2" ><a href="{% url "rental:faqs" %}"  id="footer_link">FAQs</a></li>
-        <li class="nav-item mb-2" ><a href="{% url 'rental:about_us' %}" id="footer_link">About</a></li> 
-      </ul>
+        <h5 class="footer-titles">Other</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2" ><a href="{% url 'rental:home' %}"  id="footer_link">Home</a></li>
+            <li class="nav-item mb-2" ><a href="{% url "rental:faqs" %}"  id="footer_link">FAQs</a></li>
+            <li class="nav-item mb-2" ><a href="{% url 'rental:about_us' %}" id="footer_link">About</a></li> 
+        </ul>
     </div>
 
     <div class="footer-col">

@@ -60,6 +60,7 @@ class Customer(models.Model):
     name = models.CharField(max_length=30, null=False)
     email = models.EmailField(null=False)
     phone_number =models.CharField(max_length=12, help_text="Please enter your phone number +2556912345678", default="000000000000")
+    staff_account = models.BooleanField(default="False")
 
     def __str__(self) -> str:
         return self.name
