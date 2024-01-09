@@ -75,17 +75,14 @@
 {% endblock %}
 
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5  border-top">
-    <div class="col mb-3" id="footer_logo_div">
+    <div class="footer-col" id="footer_logo_div">
         <img src="{% static 'images/logo.jpeg' %}" id="footer_logo" alt="Logo">
       <p id="rights_text">©Star Rental2023 All Rights Reserved</p>
     </div>
 
-    <div class="col mb-3">
 
-    </div>
-
-   <div class="col mb-3">
-  <h5>Socials</h5>
+   <div class="footer-col">
+  <h5 class="footer-titles">Socials</h5>
   <ul class="nav flex-column">
     <li class="nav-item mb-2">
       <a href="https://www.instagram.com/star_rental_/?igshid=NzZlODBkYWE4Ng%3D%3D" id="footer_link">Instagram</a>
@@ -99,19 +96,21 @@
   </ul>
 </div>
 
-    <div class="col mb-3">
-      <h5>Other</h5>
+    <div class="footer-col">
+      <h5 class="footer-titles">Other</h5>
       <ul class="nav flex-column">
         <li class="nav-item mb-2" ><a href="{% url 'rental:home' %}"  id="footer_link">Home</a></li>
         <li class="nav-item mb-2" ><a href="{% url "rental:faqs" %}"  id="footer_link">FAQs</a></li>
         <li class="nav-item mb-2" ><a href="{% url 'rental:about_us' %}" id="footer_link">About</a></li> 
       </ul>
     </div>
-    <div class="col mb-3">
+
+    <div class="footer-col">
         <ul class="nav flex-column">
             <li class="nav-item m-auto" ><a href="{% url 'rental:about_us' %}" id="footer_link"> Leave a review</a></li>
         </ul>
     </div>
+
   </footer>
 </body>
 

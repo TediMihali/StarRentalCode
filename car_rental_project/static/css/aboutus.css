@@ -31,7 +31,7 @@ body {
 .card-title {
   color: #343a40; /* Dark color for the card titles */
   font-size: 2.5em;
-  margin-bottom: 10px;
+  margin-bottom: 1 rem;
 }
 
 .card-text {
@@ -39,29 +39,9 @@ body {
   font-size: 1.4em;
   line-height: 1.6;
 }
-.card-title,
-.card-text,
-.jumbotron h1,
-.jumbotron p {
-  transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
-}
 
-.card-title:hover,
-.card-text:hover,
-.jumbotron h1:hover,
-.jumbotron p:hover {
-  transform: scale(1.1); /* Zoom in by 10% on hover */
-}
-.card,
-.jumbotron {
-  transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
-}
 
-.card:hover,
-.jumbotron:hover {
-  transform: scale(1.1); /* Zoom in by 10% on hover */
-/* Add any additional styles you may need */
-}
+
 
 .google-map {
   margin: 2rem;

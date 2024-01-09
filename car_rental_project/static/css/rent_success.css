@@ -4,12 +4,13 @@
 }
 
 #success_container{
-    background-color: #343A40;
-    border: 1px white solid;
-    width:60vw;
+    background-color: #202224;
     margin-top: 5vh;
+    width:50%;
     border-radius: 2rem;
     margin-bottom: 10vh;
+    box-shadow: 0 5px 35px 5px rgba(255, 255, 255, 0.05);
+    cursor: pointer;
 }
 
 #form_text{

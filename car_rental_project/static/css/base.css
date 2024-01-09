@@ -11,7 +11,6 @@ body{
     width:100vw
 }
 
-
 .nav_text{
     font-size: 1.5rem;
     margin: auto;
@@ -49,12 +48,23 @@ body{
 }
 
 footer{
+    display: flex;
+    flex-wrap: wrap;
     width: 100vw;
+    box-sizing: box;
     height:20vh;
     background-color: #202224; 
     margin-top:auto;
     padding-top: 2vh;
     padding-bottom: 1vh;
+}
+
+.footer-col{ 
+ margin-top: 0vh;
+ margin-left: 2vw;
+ flex: 1 0 100%; 
+ box-sizing: border-box; 
+ padding: 10px; 
 }
 
 #footer_link{
@@ -95,6 +105,10 @@ footer{
     display:block
 }
 
+.nav-item, .footer-titles{
+    text-align: center;
+}
+
 #logout_button{
     background-color: #C8AF6C;
     border: #C8AF6C;
@@ -104,8 +118,6 @@ footer{
 
     &:hover{
         transform: scale(1.1);
-
-        
     }
 
     &:not(:hover){
@@ -116,3 +128,17 @@ footer{
 #nav{
     background-color: #202224;
 }
+
+.footer-titles{
+    
+}
+
+@media screen and (min-width: 768px) {
+    footer{
+        justify-content: center;
+    }
+    .footer-col{
+      flex: 1; /* Reset flex property for larger screens */
+      margin-left: 0;
+    }
+  }
