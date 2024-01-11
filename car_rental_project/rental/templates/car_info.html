@@ -17,17 +17,17 @@
                         <div class="row mb-3">
                             <div class="col-md-5 p-2" id="box_col">
                                 <p id="form_text">Car Brand: {{car.brand}}</p>
-                                <p id="form_text">Car Brand: {{car.model}}</p>
-                                <p id="form_text">Car Brand: {{car.gearbox}}</p>
-                                <p id="form_text">Car Brand: {{car.fuel}}</p>
-                                <p id="form_text">Car Brand: {{car.production_year}}</p>
-                                <p id="form_text">Car Brand: {{car.color}}</p>
-                                <p id="form_text">Car Brand: {% if user.is_authenticated %}</p>
-                                <p id="form_text">Car Brand: {{car.discounted_daily_rate}}</p>
-                                <p id="form_text">Car Brand: {% else %}</p>
-                                <p id="form_text">Car Brand: {{car.daily_rate}}</p>
-                                <p id="form_text">Car Brand: {% endif %}</p>
-                                <p id="form_text">Car Brand: {{car.location}}</p>
+                                <p id="form_text">Car Model: {{car.model}}</p>
+                                <p id="form_text">Car Gearbox: {{car.gearbox}}</p>
+                                <p id="form_text">Car Fuel: {{car.fuel}}</p>
+                                <p id="form_text">Production Year: {{car.production_year}}</p>
+                                <p id="form_text">Car Color: {{car.color}}</p>
+                                {% if user.is_authenticated %}
+                                <p id="form_text">Car Discounted Daily Rate: {{car.discounted_daily_rate}}</p>
+                                {% else %}
+                                <p id="form_text">Car Daily Rate: {{car.daily_rate}}</p>
+                                {% endif %}
+                                <p id="form_text">Car Location: {{car.location}}</p>
                             </div>
 
                             <div class="col-md-5 p-2" id="box_col">

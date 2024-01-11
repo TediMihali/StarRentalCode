@@ -56,3 +56,4 @@ class CarRentFormLoggedOut(forms.ModelForm):
 
 class CheckBookingForm(forms.Form):
     booking_id = forms.IntegerField()
+

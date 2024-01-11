@@ -2,18 +2,18 @@
     justify-content: center;
   }
   
-  #inner_container{
-      border: 1px solid #ffffff33;
-      border-radius: 15px;
-      background-color: #202224;
-      padding: 2vw;
-      box-shadow: 0 5px 35px 5px rgba(255, 255, 255, 0.1);
-      cursor: pointer;
-  }
+#inner_container{
+    border: 1px solid #ffffff33;
+    border-radius: 15px;
+    background-color: #202224;
+    padding: 2vw;
+    box-shadow: 0 5px 35px 5px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
 
 #form_text{
     color: #C8AF6C;
-    text-align: center;
+    text-align: left;
 }
   
   #form_title{
@@ -26,7 +26,7 @@
   }
   
   #box_col{
-      margin:auto
+      margin:auto;
   }
   
   #button_container{

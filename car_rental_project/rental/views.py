@@ -2,7 +2,7 @@ from typing import Any
 from django.views.generic.base import TemplateView, View
 from django.views.generic import ListView
 from django.db.models import Q
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.edit import FormView
 from django.contrib.auth.decorators import login_required
@@ -11,8 +11,6 @@ from .forms import CarSearchForm, CarRentFormLoggedIn, CarRentFormLoggedOut, Che
 from .models import Car, CarImage, Booking, Customer
 from django.shortcuts import render
 from django.contrib import messages
-
-
 
 
 class Home(TemplateView):
@@ -195,7 +193,6 @@ class CheckBookingsView(FormView):
         # Redirect to the booking_info page with the correct booking_id
         return redirect('rental:booking_info', booking_id=booking_id)
         
-    
 
 class BookingInfoView(TemplateView):
     template_name = "booking_info.html"
@@ -213,15 +210,6 @@ class BookingInfoView(TemplateView):
         return context
     
 
-@method_decorator(login_required, name="dispatch")
-class StaffView(ListView):
-    model = Booking
-    template_name = "staff_view.html"
-    context_object_name = "bookings_list"
-    
-    def get_queryset(self):
-        # Get all the bookings to be manipulated by staff
-        return Booking.objects.all()
 
 
 class FAQS(TemplateView):
