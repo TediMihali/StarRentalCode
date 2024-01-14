@@ -3,102 +3,100 @@
 
 {% block links %}
 <link rel="stylesheet" href="{% static 'css/staff_add_listing.css' %}">
-{% endblock%}
+{% endblock %}
 
 {% block content %}
-<div class="container mt-5 mb-5">
+<div class="containr mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-10 custom-bg-color" id="inner_container" >
-                    <h2 class="mb-4 p-2" id="form_title">Add the car listing</h2>
-                    <form method="post" action="{% url 'staff:staff_add_listing' %}" enctype="multipart/form-data">
-                        {% csrf_token %}
+            <h2 class="mb-4 p-2" id="form_title">Add the car listing</h2>
+            <form method="post" action="{% url 'staff:staff_add_listing' %}" enctype="multipart/form-data">
+                {% csrf_token %}
 
-                                <label for={{ listing_form.name.for_label}} class="form-label" id="form_label">Brand:</label>
-                                <input type="text" id="{{listing_form.brand.id_for_label}}" name="{{listing_form.brand.name}}" class="form-control" required>
-                                {% if listing_form.brand.errors %}
-                                <div class="text-danger">{{ listing_form.model.errors|join:", " }}</div>
-                                {% endif %}
-                                <br>
+                <label for="{{ listing_form.brand.id_for_label }}" class="form-label" id="form_label">Brand:</label>
+                <input type="text" id="{{ listing_form.brand.id_for_label }}" name="{{ listing_form.brand.name }}" class="form-control" required>
+                {% if listing_form.brand.errors %}
+                    <div class="text-danger">{{ listing_form.brand.errors|join:", " }}</div>
+                {% endif %}
+                <br>
 
-                                <label for={{listing_form.phone_number.for_label}} class="form-label" id="form_label">Model:</label>
-                                <input type="text" id="{{listing_form.model.id_for_label}}" name="{{listing_form.model.name}}" class="form-control" required>
-                                {% if listing_form.model.errors %}
-                                <div class="text-danger">{{ listing_form.model.errors|join:", " }}</div>
-                                {% endif %}
-                                <br>
+                <label for="{{ listing_form.model.id_for_label }}" class="form-label" id="form_label">Model:</label>
+                <input type="text" id="{{ listing_form.model.id_for_label }}" name="{{ listing_form.model.name }}" class="form-control" required>
+                {% if listing_form.model.errors %}
+                    <div class="text-danger">{{ listing_form.model.errors|join:", " }}</div>
+                {% endif %}
+                <br>
 
-                                <label for="{{ listing_form.start_date.id_for_label }}" class="form-label" id="form_label">Gearbox:</label>
-                                <select type="text" id="{{ listing_form.gearbox.id_for_label }}" name="{{ listing_form.gearbox.name }}" class="form-control" required>
-                                {% for gearbox, label in listing_form.gearbox.field.choices%}
-                                <option value="{{ gearbox }}" {% if listing_form.gearbox.value == gearbox %}selected{% endif %}>{{ label }}</option>
-                                {% endfor %}
-                                </select>
-                                {% if listing_form.gearbox.errors %}
-                                    <div class="text-danger">{{ listing_form.gearbox.errors|join:", " }}</div>
-                                {% endif %}
-                                <br>
+                <label for="{{ listing_form.gearbox.id_for_label }}" class="form-label" id="form_label">Gearbox:</label>
+                <select type="text" id="{{ listing_form.gearbox.id_for_label }}" name="{{ listing_form.gearbox.name }}" class="form-control" required>
+                    {% for gearbox, label in listing_form.gearbox.field.choices %}
+                        <option value="{{ gearbox }}" {% if listing_form.gearbox.value == gearbox %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+                {% if listing_form.gearbox.errors %}
+                    <div class="text-danger">{{ listing_form.gearbox.errors|join:", " }}</div>
+                {% endif %}
+                <br>
 
-                                <label for="{{ listing_form.fuel.id_for_label }}" class="form-label" id="form_label">Fuel:</label>
-                                <select type="text" id="{{ listing_form.fuel.id_for_label }}" name="{{ listing_form.fuel.name }}" class="form-control" required>
-                                {%for fuel, label in listing_form.fuel.field.choices %}
-                                <option value="{{ fuel }}" {% if listing_form.fuel.value == gearbox %}selected{% endif %}>{{ label}}</option>
-                                {% endfor %}
-                                </select>
-                                {% if listing_form.fuel.errors %}
-                                    <div class="text-danger">{{ listing_form.fuel.errors|join:", " }}</div>
-                                {% endif %}
+                <label for="{{ listing_form.fuel.id_for_label }}" class="form-label" id="form_label">Fuel:</label>
+                <select type="text" id="{{ listing_form.fuel.id_for_label }}" name="{{ listing_form.fuel.name }}" class="form-control" required>
+                    {% for fuel, label in listing_form.fuel.field.choices %}
+                        <option value="{{ fuel }}" {% if listing_form.fuel.value == gearbox %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+                {% if listing_form.fuel.errors %}
+                    <div class="text-danger">{{ listing_form.fuel.errors|join:", " }}</div>
+                {% endif %}
 
-                                <label for="{{ listing_form.production_year.id_for_label }}" class="form-label" id="form_label">Production Year:</label>
-                                <input type="number" id="{{ listing_form.production_year.id_for_label }}" name="{{ listing_form.production_year.name }}" class="form-control" required>
-                                {% if listing_form.production_year.errors %}
-                                    <div class="text-danger">{{ listing_form.production_year.errors|join:", " }}</div>
-                                {% endif %}
+                <label for="{{ listing_form.production_year.id_for_label }}" class="form-label" id="form_label">Production Year:</label>
+                <input type="number" id="{{ listing_form.production_year.id_for_label }}" name="{{ listing_form.production_year.name }}" class="form-control" required>
+                {% if listing_form.production_year.errors %}
+                    <div class="text-danger">{{ listing_form.production_year.errors|join:", " }}</div>
+                {% endif %}
 
-                                <label for="{{ listing_form.color.id_for_label }}" class="form-label" id="form_label">Color:</label>
-                                <input type="text" id="{{ listing_form.color.id_for_label }}" name="{{ listing_form.color.name }}" class="form-control" required>
-                                {% if listing_form.color.errors %}
-                                    <div class="text-danger">{{ listing_formform.color.errors|join:", " }}</div>
-                                {% endif %}
+                <label for="{{ listing_form.color.id_for_label }}" class="form-label" id="form_label">Color:</label>
+                <input type="text" id="{{ listing_form.color.id_for_label }}" name="{{ listing_form.color.name }}" class="form-control" required>
+                {% if listing_form.color.errors %}
+                    <div class="text-danger">{{ listing_form.color.errors|join:", " }}</div>
+                {% endif %}
 
-                                <label for="{{ listing_form.daily_rate.id_for_label }}" class="form-label" id="form_label">Daily rate:</label>
-                                <input type="number" id="{{ listing_form.daily_rate.id_for_label }}" name="{{ listing_form.daily_rate.name }}" class="form-control" required>
-                                {% if listing_form.daily_rate.errors %}
-                                    <div class="text-danger">{{ listing_form.daily_rate.errors|join:", " }}</div>
-                                {% endif %}
+                <label for="{{ listing_form.daily_rate.id_for_label }}" class="form-label" id="form_label">Daily rate:</label>
+                <input type="number" id="{{ listing_form.daily_rate.id_for_label }}" name="{{ listing_form.daily_rate.name }}" class="form-control" required>
+                {% if listing_form.daily_rate.errors %}
+                    <div class="text-danger">{{ listing_form.daily_rate.errors|join:", " }}</div>
+                {% endif %}
 
-                                <label for="{{ listing_form.discounted_daily_rate.id_for_label }}" class="form-label" id="form_label"> Discounted daily rate :</label>
-                                <input type="number" id="{{ listing_form.discounted_daily_rate.id_for_label }}" name="{{ listing_form.discounted_daily_rate.name }}" class="form-control" required>
-                                {% if listing_form.discounted_daily_rate.errors %}
-                                    <div class="text-danger">{{ listing_form.discounted_daily_rate.errors|join:", " }}</div>
-                                {% endif %}
+                <label for="{{ listing_form.discounted_daily_rate.id_for_label }}" class="form-label" id="form_label"> Discounted daily rate :</label>
+                <input type="number" id="{{ listing_form.discounted_daily_rate.id_for_label }}" name="{{ listing_form.discounted_daily_rate.name }}" class="form-control" required>
+                {% if listing_form.discounted_daily_rate.errors %}
+                    <div class="text-danger">{{ listing_form.discounted_daily_rate.errors|join:", " }}</div>
+                {% endif %}
                                 
-                                <label for="{{ listing_form.location.id_for_label }}" class="form-label" id="form_label">Location:</label>
-                                <input type="text" id="{{ listing_form.location.id_for_label }}" name="{{ listing_form.location.name }}" class="form-control" required>
-                                {% if listing_form.location.errors %}
-                                    <div class="text-danger">{{ listing_tform.location.errors|join:", " }}</div>
-                                {% endif %}
+                <label for="{{ listing_form.location.id_for_label }}" class="form-label" id="form_label">Location:</label>
+                <input type="text" id="{{ listing_form.location.id_for_label }}" name="{{ listing_form.location.name }}" class="form-control" required>
+                {% if listing_form.location.errors %}
+                    <div class="text-danger">{{ listing_form.location.errors|join:", " }}</div>
+                {% endif %}
 
-                               
+                <label for="{{ listing_form.image.id_for_label }}" class="form-label" id="form_label">Images:</label>
+                <input type="file" id="{{ listing_form.image.id_for_label }}" name="{{ listing_form.image.name }}" class="form-control">
+                {% if listing_form.image.errors %}
+                    <div class="text-danger">{{ listing_form.image.errors|join:", " }}</div>
+                {% endif %}
 
-                                <label for="{{ image_form.image.id_for_label }}" class="form-label" id="form_label">Images:</label>
-                                <input type="file" id="{{ image_form.image.id_for_label }}" name="{{ image_form.image.name }}" class="form-control">
-                                {% if image_form.image.errors %}
-                                    <div class="text-danger">{{ image_form.image.errors|join:", " }}</div>
-                                {% endif %}
-
-                                <div  id="error_message">
-                                    {% if messages %}
-                                        {% for message in messages %}
-                                            <p  style="text-align: center; color: brown;"{% if message.tags %}  class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-                                        {% endfor %}
-                                    {% endif %}
-                                </div>
-
-                                <div class="col-md-6 mt-3" id="button_container">
-                                    <button type="submit" class="btn btn-primary" value="save" id="form_button">Add Listing</button>
-                                </div>
-                    </form>
+                <div id="error_message">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p style="text-align: center; color: brown;"{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
                 </div>
+
+                <div class="col-md-6 mt-3" id="button_container">
+                    <button type="submit" class="btn btn-primary" value="save" id="form_button">Add Listing</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

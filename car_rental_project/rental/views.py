@@ -7,11 +7,13 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.edit import FormView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+
+from car_rental_project import settings
 from .forms import CarSearchForm, CarRentFormLoggedIn, CarRentFormLoggedOut, CheckBookingForm
 from .models import Car, CarImage, Booking, Customer
 from django.shortcuts import render
 from django.contrib import messages
-
+from django.core.mail import send_mail
 
 class Home(TemplateView):
     template_name = "home.html"
@@ -68,7 +70,7 @@ def car_rent_view(request, car_id):
                     booking.total_payment = booking.calculate_total_payment() 
                 except Customer.DoesNotExist:
                     customer = None
-
+                    customer_email = form.customer_email
                     booking = Booking(
                         car=car,
                         CUSTOMER=customer,
@@ -79,26 +81,30 @@ def car_rent_view(request, car_id):
                         # Add other fields as needed
                     )
                     booking.total_payment = booking.calculate_total_payment() 
-                except TypeError:
-                    customer = None
-
-                    booking = Booking(
-                        car=car,
-                        CUSTOMER=customer,
-                        name=name,
-                        phone_number=phone_number,
-                        start_date=start_date,
-                        end_date=end_date
-                        # Add other fields as needed
-                    )
-                    booking.total_payment = booking.calculate_total_payment() 
+                
                 booking.save()
-
+                
                 # Get dynamic values
                 booking_id = booking.id
                 car_name = str(car)  # Assuming __str__ method is defined in the Car model
                 start_date_str = str(start_date)
                 end_date_str = str(end_date)
+
+                send_mail(
+                    f"Booking with booking_id: {booking_id}",
+                    f"""
+                    Thank you for your booking
+                    -------Booking Details---------
+                    Booking ID: {booking_id}
+                    Car: {car_name}
+                    Start Date: {start_date}
+                    End Date: {end_date}
+
+                    We encourage you to save this email because you will need the booking id to access your booking and make changes.
+                    """,
+                    settings.EMAIL_HOST_USER,
+                    [customer_email]
+                    )
 
                 # Using reverse with dynamic values
                 redirect_link = reverse('rental:rent_success', kwargs={
@@ -131,7 +137,7 @@ def is_car_available(car, start_date, end_date):
 
 def car_info(request, car_id):
     car = get_object_or_404(Car, id=car_id)
-    context = {'car':car}
+    context = {'car':car}   
     return render(request, 'car_info.html', context)
 
 

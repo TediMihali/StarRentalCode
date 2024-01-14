@@ -26,11 +26,18 @@ class CarRentFormLoggedIn(forms.ModelForm):
 
         if end_date and end_date <= timezone.now().date():  
             raise ValidationError("The date must be in the future")
-
+        
 class CarRentFormLoggedOut(forms.ModelForm):
+    email = forms.EmailField()
+
     class Meta:
         model = Booking
-        fields = ['name', 'phone_number', 'start_date', 'end_date']
+        fields = ['name', 'phone_number', 'email', 'start_date', 'end_date']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.customer_email = None
+
 
     def clean(self):
         cleaned_data = super().clean()
@@ -41,8 +48,18 @@ class CarRentFormLoggedOut(forms.ModelForm):
             raise ValidationError("The end date must be after the start date")
 
         if end_date and end_date <= timezone.now().date():
-            raise ValidationError("The date must be in the future")
+            raise ValidationError("The date must be in the future")\
+            
+        self.customer_email = cleaned_data.get('email', '')
 
+    def save(self, commit=True):
+    # Access the saved email from the customer_email attribute
+        email = getattr(self, 'customer_email', '')
+
+        # If you want to do something with the email before saving, you can do it here
+
+        return super().save(commit)
+        
 class CheckBookingForm(forms.Form):
     booking_id = forms.IntegerField()
 

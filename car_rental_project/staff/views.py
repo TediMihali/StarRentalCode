@@ -9,7 +9,7 @@ from django.db.models import Q
 
 from rental.models import Booking, CarImage
 
-from staff.forms import AddListingForm, AddImageForm
+from staff.forms import AddListingForm
 # Create your views here.
 
 
@@ -34,22 +34,18 @@ class AddListingView(View):
 
     def get(self, request):
         listing_form = AddListingForm()
-        image_form = AddImageForm()
-        return render(request, self.template_name, {'listing_form': listing_form, 'image_form': image_form})
+        return render(request, self.template_name, {'listing_form': listing_form})
 
     def post(self, request):
-        listing_form = AddListingForm(request.POST)
-        image_form = AddImageForm(request.POST, request.FILES)
+        listing_form = AddListingForm(request.POST, request.FILES)
 
-        if listing_form.is_valid() and image_form.is_valid():
-            new_listing = listing_form.save(commit=False)
-            new_listing.save()
+        if listing_form.is_valid():
+            new_listing = listing_form.save()
+            images = request.FILES.getlist('image')
 
-            # Now associate the image with the new listing
-            image = image_form.save(commit=False)
-            image.car = new_listing
-            image.save()
+            for image in images:
+                CarImage.objects.create(car=new_listing, image=image)
+                
+            return redirect('rental:car_info', id=new_listing.id)
 
-            return redirect('rental:car_info', pk=new_listing.pk)
-
-        return render(request, self.template_name, {'listing_form': listing_form, 'image_form': image_form})
+        return render(request, self.template_name, {'listing_form': listing_form})
