@@ -5,6 +5,7 @@
 #outer_cotnainer{
  width:60vw;
 }
+
 #inner_container{
       width:30vw;
       justify-content: center;
@@ -22,16 +23,12 @@ text-align: center;
 }
 
 #form_label{
+  margin-top: 5px;
 color: #C8AF6C;
 }
 
-#box_col{
-margin:auto
-}
 
-#button_container{
-align-items: center;
-}
+
 
 #form_button{
 display: flex;

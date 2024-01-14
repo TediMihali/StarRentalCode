@@ -53,8 +53,8 @@ def car_rent_view(request, car_id):
 
             if is_car_available(car, start_date, end_date):
                 try:
-                    user = request.user
-                    customer = Customer.objects.get(user=user)
+                    current_user = request.user if request.user.is_authenticated else None
+                    customer = Customer.objects.get(user=current_user)
 
                     booking = Booking(
                         car=car,
@@ -66,7 +66,7 @@ def car_rent_view(request, car_id):
                         # Add other fields as needed
                     )
                     booking.total_payment = booking.calculate_total_payment() 
-                except ValueError:
+                except Customer.DoesNotExist:
                     customer = None
 
                     booking = Booking(
@@ -153,16 +153,14 @@ class CancelBookingView( View):
         # Add any additional logic for cancellation, such as updating the database
         booking.delete()
         if request.user.is_authenticated:
-            return redirect("rental:bookings")  # Redirect to the bookings list page
+             return redirect(request.META.get('HTTP_REFERER', '/'))  # Redirect to the bookings list page
         else:
             return redirect("rental:home")
 
-    def your_view(request):
-        quick_links = QuickLink.objects.all()
-        return render(request, 'base.html', {'quick_links': quick_links})
 
     def home(request):
         return render(request, 'home.html')
+
 
 def rent_success(request, booking_id, car, start_date, end_date):
     booking = get_object_or_404(Booking, id=booking_id)
@@ -175,6 +173,7 @@ def rent_success(request, booking_id, car, start_date, end_date):
     }
 
     return render(request, 'rent_success.html', context)
+
 
 class CheckBookingsView(FormView):
     template_name = "check_bookings.html"
@@ -209,8 +208,6 @@ class BookingInfoView(TemplateView):
 
         return context
     
-
-
 
 class FAQS(TemplateView):
     template_name="faq.html"

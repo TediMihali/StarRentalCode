@@ -3,17 +3,6 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 from .models import Booking
 
-
-# def future_date_validator(value):
-#     if value <= timezone.now().date():
-#         raise ValidationError("The date must be in the future")
-
-
-# def end_date_validator(start_date, end_date):
-#     if end_date < start_date:
-#         raise ValidationError("The end date must be after the start date")
-
-
 class CarSearchForm(forms.Form):
     brand = forms.CharField(max_length=30)
     location = forms.CharField(max_length=50)

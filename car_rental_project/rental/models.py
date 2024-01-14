@@ -1,8 +1,7 @@
 import json
 from django.db import models
-from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib.auth.models import User
-
+from django.contrib.auth import get_user_model
 
 
 # Create your models here.
@@ -79,8 +78,14 @@ class Booking(models.Model):
         return (self.end_date - self.start_date).days
 
 
-    def calculate_total_payment(self):
-        return self.car.daily_rate * self.number_of_days()
+    def calculate_total_payment(self, user=None):
+        if user and user.is_authenticated():
+            # If user is logged in, calculate with discount
+            return self.car.discounted_daily_rate * self.number_of_days()
+        else:
+            # If user is not logged in or user is None, calculate without discount
+            return self.car.daily_rate * self.number_of_days()
+        
 
     def save(self, *args, **kwargs):
         
