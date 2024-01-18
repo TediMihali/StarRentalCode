@@ -7,7 +7,7 @@ from django.views.generic import ListView
 from django.shortcuts import redirect
 from django.db.models import Q
 
-from rental.models import Booking, CarImage
+from rental.models import Booking, CarImage, Car
 
 from staff.forms import AddListingForm
 # Create your views here.
@@ -42,10 +42,10 @@ class AddListingView(View):
         if listing_form.is_valid():
             new_listing = listing_form.save()
             images = request.FILES.getlist('image')
-
+             
             for image in images:
                 CarImage.objects.create(car=new_listing, image=image)
                 
-            return redirect('rental:car_info', id=new_listing.id)
+            return redirect('rental:auto_listing')
 
         return render(request, self.template_name, {'listing_form': listing_form})
