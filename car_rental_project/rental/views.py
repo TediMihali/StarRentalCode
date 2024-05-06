@@ -90,6 +90,10 @@ def car_rent_view(request, car_id):
                 start_date_str = str(start_date)
                 end_date_str = str(end_date)
 
+                if request.user.is_authenticated:
+                    email  = [booking.CUSTOMER.email]  
+                else:
+                    email = [request.POST.get("email")]
                 send_mail(
                     f"Booking with booking_id: {booking_id}",
                     f"""
@@ -103,7 +107,8 @@ def car_rent_view(request, car_id):
                     We encourage you to save this email because you will need the booking id to access your booking and make changes.
                     """,
                     settings.EMAIL_HOST_USER,
-                    [customer_email]
+                    email
+    
                     )
 
                 # Using reverse with dynamic values
