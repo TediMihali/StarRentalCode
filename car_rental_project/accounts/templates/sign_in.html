@@ -11,7 +11,7 @@
 
   <div class="container-fluid" >
     <div class="row justify-content-center">
-      <div class="col-md-6     p-4" id="sign_in_container">
+      <div class="col-md-6 p-4" id="sign_in_container">
         <h2 class="mb-4" id="form_text">Sign In</h2>
         <form method="post" action="{% url 'accounts:signin' %}">
           {% csrf_token %}  
@@ -39,7 +39,7 @@
           <div id="form_button_div">
           <button type="submit" id="form_button">Sign In</button>
           </div>
-          <p class="text-center" id="form_text">Forgot your password <a href="#">Reset Password</a></p>
+          <p class="text-center" id="form_text">Forgot your password <a href="{% url 'accounts:password_reset' %}">Reset Password</a></p>
 	      	<p class="text-center" id="form_text">Don't have a account? <a href="{% url 'accounts:signup' %}">Join Now</a></p>
         </form>
       </div>

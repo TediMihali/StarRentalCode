@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import Home, AutoListingView, AboutUsView, car_rent_view,  BookingsView, CancelBookingView, rent_success, CheckBookingsView, BookingInfoView, FAQS, car_info
-
+from accounts.views import activate_account
 
 
 
@@ -16,6 +16,7 @@ urlpatterns = [
     path('check/bookings', CheckBookingsView.as_view(), name="check_bookings"),
     path('bookings/cancel/<int:booking_id>',CancelBookingView.as_view() ,name="cancel_booking"),
 
+    path('activate/<uidb64>/<token>/', activate_account, name='activate'),
     path("about/", AboutUsView.as_view(), name="about_us"),
     path("faqs", FAQS.as_view(), name='faqs'),
 

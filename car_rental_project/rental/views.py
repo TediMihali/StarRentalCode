@@ -136,7 +136,7 @@ def is_car_available(car, start_date, end_date):
         Q(start_date__lte=end_date, end_date__gte=end_date) |
         Q(start_date__gte=start_date, end_date__lte=end_date),
         car=car
-    )
+    )   
 
     return not overlapping_bookings.exists()
 

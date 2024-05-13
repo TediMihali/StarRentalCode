@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static "css/signup.css" %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-6 p-4" id="sign_in_container">
+      <h2 class="mb-4" id="form_text">Account Activation Failed</h2>
+      <div id="form_fields">
+        <p>Your account could not be activated. This may be because the activation link was invalid or has expired.</p>
+        <p>Please try to <a href="{% url 'accounts:signup' %}">sign up</a> again or request a new activation link.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

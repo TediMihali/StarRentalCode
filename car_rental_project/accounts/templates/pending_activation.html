@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static "css/signup.css" %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6 p-4" id="sign_in_container">
+      <h2 class="mb-4" id="form_text">Account Activation Required</h2>
+      
+        <p>Please check your email for an activation link to activate your account.</p>
+        <p>If you do not receive an email, check your spam folder or <a href="{% url 'accounts:signin' %}">try to sign up</a> again.</p>
+      
+    </div>
+  </div>
+</div>
+{% endblock %}
